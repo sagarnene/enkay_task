@@ -9,12 +9,16 @@ use Crypt;
 class TaskModel{
     
     public function show_task_data() {
-       return DB::table('task')
+       /*DB::table('task')
             ->join('employee', 'task.assignee', '=', 'employee.id')
            
             ->select('task.priority','task.status','task.due_date', 'employee.name')
-            ->get();
-        
+            ->paginate(2);
+       */
+        return DB::select('select  e1.name as manager, e2.name as assignee, t.status, t.priority, t.due_date
+from employee e1, task t, employee e2
+where e1.id = t.manager
+and e2.id = t.assignee');
         
     }
     public function show_notification_data() {

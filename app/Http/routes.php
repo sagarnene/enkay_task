@@ -23,7 +23,10 @@ Route::get('mail','TaskController@send_mail');
 Route::get('login','UserController@user_login_form');
 Route::post('login-check','UserController@user_check');
 Route::get('logout','UserController@logout');
-
+Route::get('test',function () {
+    
+    return view('home');
+});
 Route::get('logout', function () {
     Auth::logout();
     return redirect('login');

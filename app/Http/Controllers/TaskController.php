@@ -81,7 +81,7 @@ class TaskController extends Controller {
     public function add_notification() {
         $expiry_date = Input::get('expiry_date');
         $comments = Input::get('comments');
-     
+        $notification_id= Input::get('id');
         $manager = Auth::user()->id;
         $table='notification';
         $validator = Validator::make(

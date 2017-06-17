@@ -35,3 +35,6 @@
 	right: 10px;
 	top: 10px;
 }
+#main .jarviswidget .widget-body{
+	min-height: auto;
+}
