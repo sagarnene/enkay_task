@@ -1,0 +1,37 @@
+#main {
+	margin-left: 0;
+}
+#main .demo {
+	display: none;
+}
+#main table.dataTable {
+	margin-top: 0 !important;
+}
+#main .jarviswidget-sortable {
+	padding-top: 10px;
+}
+.nottification-icon {
+	padding-left: 15px;
+}
+#main .bddge-space
+{
+	margin-top: -4px;
+    display: inline-block;
+    vertical-align: top;
+	padding: 3px 6px;
+}
+#main .login-outer {
+	margin: 20px auto 0;
+	float: none !important;
+}
+
+#main .input-icon-outer{
+	position: relative;
+	width: 100%;
+	display: inline-block;
+}
+#main .input-icon-outer i{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
