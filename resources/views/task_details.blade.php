@@ -105,7 +105,7 @@
 
                                 <div class="jarviswidget jarviswidget-color-blue comment-box-table" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false" role="widget">
                                    
-                                    <header role="heading"><div class="jarviswidget-ctrls" role="menu">     <a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a></div>
+                                    <header role="heading"><!--div class="jarviswidget-ctrls" role="menu">     <a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a></div-->
                                         <span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
                                         <h2>Comment</h2>
 
@@ -142,7 +142,7 @@
                                                         </button>	
 
                                                     </div>
-                                                    <button class="btn btn-sm btn-primary" type="button">
+                                                    <button class="btn btn-sm btn-primary" type="button" onclick="$('#comment_box_body').text('')">
                                                         <i class="fa fa-times"></i> Cancel
                                                     </button>	
 
