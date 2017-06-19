@@ -1,0 +1,66 @@
+#main {
+	margin-left: 0;
+}
+#main .demo {
+	display: none;
+}
+#main table.dataTable {
+	margin-top: 0 !important;
+}
+#main .jarviswidget-sortable {
+	padding-top: 10px;
+}
+.nottification-icon {
+	padding-left: 15px;
+}
+#main .bddge-space
+{
+	margin-top: -4px;
+    display: inline-block;
+    vertical-align: top;
+	padding: 3px 6px;
+}
+#main .login-outer {
+	margin: 20px auto 0;
+	float: none !important;
+}
+#main .input-icon-outer{
+	position: relative;
+	width: 100%;
+	display: inline-block;
+}
+#main .input-icon-outer i{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+#main .jarviswidget .widget-body{
+	min-height: auto;
+}
+#main .detail-heading {
+	font-size: 15px;
+}
+#main .task-heading-breadcrumb {
+	margin: 10px 0 0 15px;
+}
+#main .detail-heading-list {
+	margin-left: 15px;
+}
+#main .comment-box-table {
+	width: 98%;
+	margin: 0 auto;
+}
+#main #comment_field .alert-info {
+    background: #dddddd;
+    border-color: #cccccc;
+    margin-bottom:  5px;
+    color: #333;
+}
+#main #comment_field .alert-info p:last-child {
+    font-weight: bold;
+}
+#main .detail-heading-list .list-value {
+    color: #999;
+    display: inline-block;
+    margin-left:  5px;
+}

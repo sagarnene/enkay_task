@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller {
 
     public function user_login_form() {
+     
         return view('loginView');
     }
 

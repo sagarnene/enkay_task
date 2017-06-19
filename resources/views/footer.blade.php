@@ -133,7 +133,7 @@
 		<script src="assets/js/plugin/datatables/dataTables.bootstrap.min.js"></script>
 		<script src="assets/js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
 
-		<script type="text/javascript">
+		<!--script type="text/javascript">
                      $(document).ready(function () {
 
                          pageSetUp();
@@ -245,9 +245,8 @@
 
                      })
 
-                 </script>
+                 </script-->
 		
-		// DO NOT REMOVE : GLOBAL FUNCTIONS!
 		  <script>
 		$(document).ready(function() {
 			
@@ -280,7 +279,7 @@
 					phone : 480
 				};
 	
-				$('#dt_basic').dataTable({
+				 var otable2 =$('#dt_basic').DataTable({
 					"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
 						"t"+
 						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
@@ -301,40 +300,43 @@
 						responsiveHelper_dt_basic.respond();
 					}
 				});
-	
+                                // custom toolbar
+		    $("div.toolbar").html('<div class="text-right"><img src="assets/img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
+		    	   
+		    // Apply the filter
+		    $("#dt_basic thead th input[type=text]").on( 'keyup change', function () {
+		    	
+		        otable2
+		            .column( $(this).parent().index()+':visible' )
+		            .search( this.value )
+		            .draw();
+		            
+		    } );
 			/* END BASIC */
 			
 			/* COLUMN FILTER  */
-		    var otable = $('#datatable_fixed_column').DataTable({
-		    	//"bFilter": false,
-		    	//"bInfo": false,
-		    	//"bLengthChange": false
-		    	//"bAutoWidth": false,
-		    	//"bPaginate": false,
-		    	//"bStateSave": true // saves sort state using localStorage
-				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6 hidden-xs'f><'col-sm-6 col-xs-12 hidden-xs'<'toolbar'>>r>"+
+                        var otable =$('#datatable_fixed_column').DataTable({
+					"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
 						"t"+
 						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-				"autoWidth" : true,
-				"oLanguage": {
-					"sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-				},
-				"preDrawCallback" : function() {
-					// Initialize the responsive datatables helper once.
-					if (!responsiveHelper_datatable_fixed_column) {
-						responsiveHelper_datatable_fixed_column = new ResponsiveDatatablesHelper($('#datatable_fixed_column'), breakpointDefinition);
+					"autoWidth" : true,
+			        "oLanguage": {
+					    "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+					},
+					"preDrawCallback" : function() {
+						// Initialize the responsive datatables helper once.
+						if (!responsiveHelper_datatable_fixed_column) {
+							responsiveHelper_datatable_fixed_column = new ResponsiveDatatablesHelper($('#datatable_fixed_column'), breakpointDefinition);
+						}
+					},
+					"rowCallback" : function(nRow) {
+						responsiveHelper_datatable_fixed_column.createExpandIcon(nRow);
+					},
+					"drawCallback" : function(oSettings) {
+						responsiveHelper_datatable_fixed_column.respond();
 					}
-				},
-				"rowCallback" : function(nRow) {
-					responsiveHelper_datatable_fixed_column.createExpandIcon(nRow);
-				},
-				"drawCallback" : function(oSettings) {
-					responsiveHelper_datatable_fixed_column.respond();
-				}		
-			
-		    });
-		    
-		    // custom toolbar
+				});
+                                // custom toolbar
 		    $("div.toolbar").html('<div class="text-right"><img src="assets/img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
 		    	   
 		    // Apply the filter
@@ -346,6 +348,7 @@
 		            .draw();
 		            
 		    } );
+		    
 		    /* END COLUMN FILTER */   
 	    
 			/* COLUMN SHOW - HIDE */

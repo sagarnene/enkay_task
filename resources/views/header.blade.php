@@ -24,7 +24,7 @@
 
 		<!-- We recommend you use "your_style.css" to override SmartAdmin
 		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.-->
-		<link rel="stylesheet" type="text/css" media="screen" href="assets/css/your_style.css"> 
+		<link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css"> 
 
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
 		<link rel="stylesheet" type="text/css" media="screen" href="assets/css/demo.min.css">
@@ -54,50 +54,6 @@
 
 	</head>
 	
-<!--
-
-	TABLE OF CONTENTS.
-	
-	Use search to find needed section.
-	
-	===================================================================
-	
-	|  01. #CSS Links                |  all CSS links and file paths  |
-	|  02. #FAVICONS                 |  Favicon links and file paths  |
-	|  03. #GOOGLE FONT              |  Google font link              |
-	|  04. #APP SCREEN / ICONS       |  app icons, screen backdrops   |
-	|  05. #BODY                     |  body tag                      |
-	|  06. #HEADER                   |  header tag                    |
-	|  07. #PROJECTS                 |  project lists                 |
-	|  08. #TOGGLE LAYOUT BUTTONS    |  layout buttons and actions    |
-	|  09. #MOBILE                   |  mobile view dropdown          |
-	|  10. #SEARCH                   |  search field                  |
-	|  11. #NAVIGATION               |  left panel & navigation       |
-	|  12. #RIGHT PANEL              |  right panel userlist          |
-	|  13. #MAIN PANEL               |  main panel                    |
-	|  14. #MAIN CONTENT             |  content holder                |
-	|  15. #PAGE FOOTER              |  page footer                   |
-	|  16. #SHORTCUT AREA            |  dropdown shortcuts area       |
-	|  17. #PLUGINS                  |  all scripts and plugins       |
-	
-	===================================================================
-	
-	-->
-
-<!-- #BODY -->
-<!-- Possible Classes
-
-		* 'smart-style-{SKIN#}'
-		* 'smart-rtl'         - Switch theme mode to RTL
-		* 'menu-on-top'       - Switch to top navigation (no DOM change required)
-		* 'no-menu'			  - Hides the menu completely
-		* 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
-		* 'fixed-header'      - Fixes the header
-		* 'fixed-navigation'  - Fixes the main menu
-		* 'fixed-ribbon'      - Fixes breadcrumb
-		* 'fixed-page-footer' - Fixes footer
-		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
-	-->
 <body class="">
 <form>
   <!-- HEADER -->
@@ -118,79 +74,12 @@
       
       <!-- logout button -->
       <div id="logout" class="btn-header transparent pull-right"> <span> <a href="logout" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span> </div>
-      <!-- end logout button --> 
       
-      <!-- input: search field --> 
-      <!--<form action="search.html" class="header-search pull-right">
-					<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
-					"ActionScript",
-					"AppleScript",
-					"Asp",
-					"BASIC",
-					"C",
-					"C++",
-					"Clojure",
-					"COBOL",
-					"ColdFusion",
-					"Erlang",
-					"Fortran",
-					"Groovy",
-					"Haskell",
-					"Java",
-					"JavaScript",
-					"Lisp",
-					"Perl",
-					"PHP",
-					"Python",
-					"Ruby",
-					"Scala",
-					"Scheme"]'>
-					<button type="submit">
-						<i class="fa fa-search"></i>
-					</button>
-					<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
-				</form>--> 
-      <!-- end input: search field --> 
-      
-      <!-- multiple lang dropdown : find all flags in the flags page --> 
-      
-      <!-- end multiple lang --> 
       
     </div>
     <!-- end pulled right: nav area --> 
     
   </header>
-  <!-- END HEADER --> 
   
-  <!-- Left panel : Navigation area --> 
-  <!-- Note: This width of the aside area can be adjusted through LESS variables --> 
-  
-  <!-- END NAVIGATION --> 
-  
-  <!-- MAIN PANEL -->
-  <div id="main" role="main"> 
-    
-    <!-- RIBBON -->
-    <div id="ribbon"> 
-      
-      <!-- breadcrumb -->
-      <ol class="breadcrumb">
-        <li>Home</li>
-        <li>Dashboard</li>
-      </ol>
-      <!-- end breadcrumb --> 
-      
-      <!-- You can also add more buttons to the
-				ribbon for further usability
-
-				Example below:
-
-				<span class="ribbon-button-alignment pull-right">
-				<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
-				<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
-				<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
-				</span> --> 
-      
-    </div>
-    <!-- END RIBBON --> 
+ 
     

@@ -1,4 +1,30 @@
 @include('header');
+ <!-- MAIN PANEL -->
+  <div id="main" role="main"> 
+    
+    <!-- RIBBON -->
+    <div id="ribbon"> 
+      
+      <!-- breadcrumb -->
+      <ol class="breadcrumb">
+        <li>Home</li>
+        <li>Dashboard</li>
+      </ol>
+      <!-- end breadcrumb --> 
+      
+      <!-- You can also add more buttons to the
+				ribbon for further usability
+
+				Example below:
+
+				<span class="ribbon-button-alignment pull-right">
+				<span id="search" class="btn btn-ribbon hidden-xs" data-title="search"><i class="fa-grid"></i> Change Grid</span>
+				<span id="add" class="btn btn-ribbon hidden-xs" data-title="add"><i class="fa-plus"></i> Add</span>
+				<span id="search" class="btn btn-ribbon" data-title="search"><i class="fa-search"></i> <span class="hidden-mobile">Search</span></span>
+				</span> --> 
+      
+    </div>
+    <!-- END RIBBON --> 
 <style>
     .required_field{color:red;}
 </style>
@@ -44,35 +70,30 @@
                                                 <th class="hasinput" style="width:17%">
                                                     <input type="text" class="form-control" placeholder="ID" />
                                                 </th>
-                                                <th class="hasinput" style="width:18%">
-                                                    <div class="input-group">
-                                                        <input class="form-control" placeholder="Manager" type="text">
 
-                                                    </div>
-
-
-                                                </th>
                                                 <th class="hasinput" style="width:16%">
                                                     <input type="text" class="form-control" placeholder="Assignee" />
                                                 </th>
                                                 <th class="hasinput" style="width:17%">
                                                     <input type="text" class="form-control" placeholder="Status" />
                                                 </th>
-                                                <th class="hasinput icon-addon">
-                                                    <input id="dateselect_filter" type="text" placeholder="Priority" class="form-control datepicker" data-dateformat="yy/mm/dd">
-                                                    
-                                                </th>
                                                 <th class="hasinput" style="width:16%">
-                                                    <input type="text" class="form-control" placeholder="Filter Salary" />
+                                                    <input type="text" class="form-control" placeholder="Priority" />
                                                 </th>
+                                                <th class="hasinput icon-addon">
+                                                    <input id="dateselect_filter" type="text" placeholder="Due Date" class="form-control datepicker" data-dateformat="yy-mm-dd">
+                                                    <label for="dateselect_filter" class="glyphicon glyphicon-calendar no-margin padding-top-15" rel="tooltip" title="" data-original-title="Due Date"></label>
+                                                </th>
+
                                             </tr>
                                             <tr role="row">
                                                 <th>ID</th>
-                                                <th>Manager</th>
+
                                                 <th>Assignee</th>
                                                 <th>Status</th>
                                                 <th>Priority</th>
                                                 <th>Due Date</th>
+
 
                                             </tr>
                                         </thead>
@@ -81,12 +102,13 @@
                                             @foreach($task_list as $task)
                                             <?php $i++; ?>
                                             <tr role="row" class="odd">
-                                                <td>{!! $i !!}</td>
-                                                <td>{!! $task->manager !!}</td>
+                                                <td><a href='task-details?id={!! $task->id !!}'>{!! $i !!}</a></td>
+
                                                 <td><span class="responsiveExpander"></span>{!! $task->assignee !!}</td>
                                                 <td>{!! $task->status !!}</td>
                                                 <td>{!! $task->priority !!}</td>
                                                 <td>{!! $task->due_date !!}</td>
+
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -149,23 +171,27 @@
                                                 <th class="hasinput" style="width:17%">
                                                     <input type="text" class="form-control" placeholder="ID" />
                                                 </th>
-                                                <th class="hasinput" style="width:18%">
+                                                <th class="hasinput">
                                                     <div class="input-group">
-                                                        <input class="form-control" placeholder="Expiry Date" type="text">
+                                                        <input class="form-control" placeholder="Comments" type="text">
 
                                                     </div>
 
 
                                                 </th>
-                                                <th class="hasinput" style="width:16%">
-                                                    <input type="text" class="form-control" placeholder="Comments" />
+                                                <th class="hasinput icon-addon" >
+                                                    <input id="exp_dateselect_filter" type="text" placeholder="Expiry Date" class="form-control datepicker" data-dateformat="yy-mm-dd">
+                                                    <label for="dateselect_filter" class="glyphicon glyphicon-calendar no-margin padding-top-15" rel="tooltip" title="" data-original-title="Expiry Date"></label>
                                                 </th>
-                                                
+
+
+
                                             </tr>
                                             <tr role="row">
                                                 <th>ID</th>
-                                                <th>Expiry Date</th>
                                                 <th>Comments</th>
+                                                <th>Expiry Date</th>
+
 
                                             </tr>
                                         </thead>
@@ -175,8 +201,9 @@
                                             <?php $i++; ?>
                                             <tr role="row" class="odd">
                                                 <td>{!! $i !!}</td>
-                                                <td>{!! $notification->expiry_date !!}</td>                   
                                                 <td>{!! $notification->comments !!}</td>
+                                                <td>{!! $notification->expiry_date !!}</td>                   
+
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -187,7 +214,7 @@
 
                         </div>
                         <!-- end widget div --> 
-                       
+
                     </div>
                     <!-- end widget --> 
 
@@ -254,7 +281,8 @@
 
                                 <div class="form-group">
                                     <span class="input-icon-outer"> 
-                                        <input name="due_date" id="due_date" placeholder="Due Date" class="datepicker hasDatepicker form-control" data-dateformat="dd/mm/yy" id="dp1497603418542" type="text"><i class="icon-append fa fa-calendar"></i>
+                                        <input name="due_date" id="due_date" type="text" placeholder="Due Date" class="form-control datepicker" data-dateformat="yy-mm-dd">
+                                        <i class="icon-append fa fa-calendar"></i>
                                     </span>
                                     <div id="due_date_error"></div>
                                 </div>
@@ -294,7 +322,10 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Expiry Date" name="expiry_date" id="expiry_date" required />
+                                    <span class="input-icon-outer">
+                                        <input name="expiry_date" id="expiry_date" type="text" placeholder="Expiry Date" class="form-control datepicker" data-dateformat="yy-mm-dd">
+                                        <i class="icon-append fa fa-calendar"></i>
+                                    </span>
                                     <div id="expiry_date_error"></div>
                                 </div>
                                 <div class="form-group">
@@ -333,7 +364,7 @@
     });
 
     function saveData(url) {
-        alert($("form").serialize());
+        //alert($("form").serialize());
         var formData = {
             'assignee': $("#assignee").val(),
             'status': $("#status").val(),
@@ -363,6 +394,8 @@
                         $(errorDiv).empty().append(value);
                     });
                     $('#successMessage').empty();
+                } else {
+                    location.reload();
                 }
 
             },
