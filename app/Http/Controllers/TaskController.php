@@ -27,16 +27,18 @@ class TaskController extends Controller {
             return view('index', ['task_list' => $task_list, 'notification_list' => $notification_list]);
         } else {
 
-            $task_list = $task_list_data->show_assignee_task(Auth::user()->id,'assignee');
-            $notification_list = $task_list_data->show_assignee_notification(Auth::user()->id,'assignee');
+            $task_list = $task_list_data->show_assignee_task(Auth::user()->id, 'assignee');
+            $notification_list = $task_list_data->show_assignee_notification(Auth::user()->id, 'assignee');
             return view('primary', ['task_list' => $task_list, 'notification_list' => $notification_list]);
         }
     }
 
     public function add_task() {
 
+        $summary = Input::get('summary');
+        $description = Input::get('description');
         $assignee = Input::get('assignee');
-        $status = Input::get('status');
+        $status = 1; // Input::get('status');
         $priority = Input::get('priority');
         $due_date = Input::get('due_date');
         $task_id = Input::get('id');
@@ -44,11 +46,15 @@ class TaskController extends Controller {
         $table = 'task';
         $validator = Validator::make(
                         array(
+                    'summary' => $summary,
+                    'description' => $description,
                     'assignee' => $assignee,
                     'status' => $status,
                     'priority' => $priority,
                     'due_date' => $due_date
                         ), array(
+                    'summary' => 'required',
+                    "description" => 'required',
                     "assignee" => 'required',
                     "status" => 'required',
                     "priority" => 'required',
@@ -63,6 +69,8 @@ class TaskController extends Controller {
         } else {
             $data = array(
                 'id' => DB::table('task')->max('id') + 1,
+                'summary' => $summary,
+                'description' => $description,
                 'manager' => $manager,
                 'assignee' => $assignee,
                 'status' => $status,
@@ -81,6 +89,21 @@ class TaskController extends Controller {
                 $add_task = new TaskModel;
                 $add_task->save_data($table, $data);
 
+                $title = 'test_title';
+                $content = 'test_title';
+
+
+                $assignee_data = $add_task->show_one_data('employee', 'id', $assignee);
+                $manager_data = $add_task->show_one_data('employee', 'id', $manager);
+
+                $managere_name = $manager_data->name;
+
+                Mail::send('emails.task_assign', ['name' => $assignee_data->email, 'manager_name' => $manager_data->name, 'summary' => $summary], function ($message) use ($assignee_data) {
+
+                    $message->to($assignee_data->email);
+                    $message->subject('Task Notification');
+                });
+
                 return Response::json(array(
                             'success' => true,
                             'msg' => "Task has added Successfully!"
@@ -94,12 +117,11 @@ class TaskController extends Controller {
         $task_list_data = new TaskModel();
 
 
-      
 
-            $task_list = $task_list_data->show_assignee_task(Input::get('id'),'id');
-            $notification_list = $task_list_data->show_assignee_notification(Input::get('id'),'id');
-            return view('task_details', ['task_list' => $task_list, 'notification_list' => $notification_list]);
-        
+
+        $task_list = $task_list_data->show_assignee_task(Input::get('id'), 'id');
+        $notification_list = $task_list_data->show_assignee_notification(Input::get('id'), 'id');
+        return view('task_details', ['task_list' => $task_list, 'notification_list' => $notification_list]);
     }
 
     public function add_notification() {
@@ -147,13 +169,14 @@ class TaskController extends Controller {
             }
         }
     }
+
     public function add_comment() {
-        $comment_id=Input::get('id');
+        $comment_id = Input::get('id');
         $task_id = Input::get('task_id');
         $comment = Input::get('comment');
-      
+
         $comment_by = Auth::user()->id;
-        $table = 'comments';
+        $table = 'task_comments';
         $validator = Validator::make(
                         array(
                     'task_id' => $task_id,
@@ -170,10 +193,9 @@ class TaskController extends Controller {
             ));
         } else {
             $data = array(
-               
                 'task_id' => $task_id,
-                'comment_field' => $comment,
-                'comment_by'=>$comment_by
+                'comment' => $comment,
+                'added_by' => $comment_by
             );
             if ($comment_id != 0) {
                 $update_comment = new TaskModel;
@@ -194,6 +216,7 @@ class TaskController extends Controller {
             }
         }
     }
+
     public function show_comment() {
         $drop_down = new TaskModel;
         $drop_down_data = $drop_down->view_filtered_data(Input::get('table'), Input::get('column'), Input::get('task_id'));
@@ -203,15 +226,18 @@ class TaskController extends Controller {
                     'report' => $drop_down_data
         ));
     }
+
     public function send_mail() {
-        $title = 'test_title';
-        $content = 'test_title';
+        
+          $task_list_data = new TaskModel();
+        $task_list = $task_list_data->show_task_data();
+        $notification_list = $task_list_data->show_notification_data();
+       
 
-        Mail::send('emails.send', ['title' => $title, 'content' => $content], function ($message) {
-
-
+        Mail::send('emails.send', ['task_list' => $task_list], function ($message) use ($task_list) {
 
             $message->to('rahul.s@ideatore.in');
+            $message->subject('Task Report');
         });
 
         return response()->json(['message' => 'Request completed']);

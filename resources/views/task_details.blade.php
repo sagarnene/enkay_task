@@ -30,7 +30,7 @@
 
         <!-- Row starts here -->
         <div class="row">
-            <p class="task-heading-breadcrumb"><i class="fa fa-tag"></i> <a href="#">ID Number</a> / <a href="#">TEST-1</a></p>
+            <p class="task-heading-breadcrumb"><i class="fa fa-tag"></i> <a href="#">Task</a> / <a href="#">{!! Input::get('id') !!}</a></p>
             <h2 class="row-seperator-header">Summary</h2>
 
             <div class="col-sm-12">
@@ -47,9 +47,9 @@
                             <div class="row">
 
                                 <div class="col-md-12 detail-heading-list">
-                                   <input type="hidden" id="task_id" value="{!! $task->id !!}">
-                                   <p><span><strong>Status:</strong></span> <span class="list-value">{!! $task->status !!}</span></p>
-                                    <p><span><strong>Priority:</strong></span> <span class="list-value">{!! $task->priority !!}</span></p>
+                                    <input type="hidden" id="task_id" value="{!! $task->id !!}">
+                                    <p><span><strong>Status:</strong></span> <span class="list-value">{!! $task->status_name !!}</span></p>
+                                    <p><span><strong>Priority:</strong></span> <span class="list-value">{!! $task->priority_name !!}</span></p>
                                     <p><span><strong>Assignee:</strong></span> <span class="list-value">{!! $task->assignee !!}</span></p>
                                 </div>
 
@@ -96,16 +96,16 @@
                     <div class="row">
                         <!-- col -->
                         <div class="col-sm-12">
-                            <p class="detail-heading"><strong>Activity</strong></p>
+                            <p class="detail-heading"><strong>Task Updates</strong></p>
                             <div id="comment_field">
-                                
+
                             </div>
                             <!-- row -->
                             <div class="row">
 
                                 <div class="jarviswidget jarviswidget-color-blue comment-box-table" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false" role="widget">
-                                   
-                                    <header role="heading"><!--div class="jarviswidget-ctrls" role="menu">     <a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a></div-->
+
+ <header role="heading"><!--div class="jarviswidget-ctrls" role="menu">     <a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a></div-->
                                         <span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
                                         <h2>Comment</h2>
 
@@ -128,7 +128,7 @@
 
                                             </div><div class="note-editor note-frame panel panel-default">
                                                 <div class="note-editable panel-body" id="comment_box_body" style="height: 200px;" contenteditable="true">
-                                                    
+
                                                 </div>
                                             </div>
 
@@ -149,7 +149,7 @@
                                                 </div>
 
 
-                                                
+
 
                                             </div>
 
@@ -185,19 +185,19 @@
 
 @include('footer')
 <script>
-     $(document).ready(function () {
+    $(document).ready(function () {
 
-       showComment('comments', 'task_id',$("#task_id").val());
+        showComment('task_comments', 'task_id', $("#task_id").val());
     });
-function saveComment(url){
-    //alert( );
-    //$("#task_id").val(),
-     
+    function saveComment(url) {
+        //alert( );
+        //$("#task_id").val(),
+
         //alert($("form").serialize());
         var formData = {
             'comment': $("#comment_box_body").text(),
             'task_id': $("#task_id").val()
-            
+
         };
         $('.required_field').empty();
         console.log(formData);
@@ -223,7 +223,7 @@ function saveComment(url){
                     });
                     $('#successMessage').empty();
                 } else {
-                    showComment('comments', 'task_id',$("#task_id").val());
+                    showComment('task_comments', 'task_id', $("#task_id").val());
                     $("#comment_box_body").text('')
                     //location.reload();
                 }
@@ -235,14 +235,14 @@ function saveComment(url){
 
             }
         });
-    
-}   
-function showComment(table, column,id) {
+
+    }
+    function showComment(table, column, id) {
 
         var formData = {
             'column': column,
             'table': table,
-            'task_id':$("#task_id").val()
+            'task_id': $("#task_id").val()
         };
         $.ajax({
             type: 'get',
@@ -254,13 +254,13 @@ function showComment(table, column,id) {
 
                 if (data.success) {
                     // alert(4);
-                   
+
                     $('#comment_field').html('');
                     $.each(data.report, function (index, value) {
 
-                        $('#comment_field').append('<div class="alert alert-info">'+
-                                    '<p>'+data.report[index].comment_field+'</p>'+
-                                    '<p>'+data.report[index].comment_by+'</p>'+
+                        $('#comment_field').append('<div class="alert alert-info">' +
+                                '<p>' + data.report[index].comment + '</p>' +
+                                '<p>' + data.report[index].added_by +'<span class="pull-right">Commented at: '+ data.report[index].added_on +'</span>'+ '</p>' +
                                 '</div>');
                     });
                 }

@@ -61,7 +61,7 @@
     <div id="logo-group"> 
       
       <!-- PLACE YOUR LOGO HERE --> 
-      <span id="logo"> <img src="assets/img/logo.png" alt="SmartAdmin"> </span> 
+      <span id="logo"> <a href="{{ URL('/') }}"><img src="assets/img/logo.png" alt="SmartAdmin"> </span> 
       <!-- END LOGO PLACEHOLDER --> 
       
     </div>
@@ -73,7 +73,7 @@
       <!-- Top menu profile link : this shows only when top menu is active --> 
       
       <!-- logout button -->
-      <div id="logout" class="btn-header transparent pull-right"> <span> <a href="logout" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span> </div>
+      <div id="logout" class="btn-header transparent pull-right"> <span> <a href="logout" title="Sign Out" data-action="userLogout"><i class="fa fa-sign-out"></i></a> </span> </div>
       
       
     </div>
