@@ -32,7 +32,7 @@
                     <td>{!! $task->id !!}</td>
                     <td><span class="responsiveExpander"></span>{!! $task->summary !!}</td>
                     <td>{!! $task->description !!}</td>
-                    <td><span class="responsiveExpander"></span>{!! $task->assignee !!}</td>
+                    <td><span class="responsiveExpander"></span>{!! $task->employee_name !!}</td>
                     <td>{!! $task->status_name !!}</td>
                     <td>{!! $task->priority_name !!}</td>
                      <td>{!! $task->comment !!}</td>
