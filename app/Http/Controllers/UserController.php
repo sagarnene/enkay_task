@@ -33,6 +33,7 @@ class UserController extends Controller {
             
             if (Auth::attempt(['username' => Input::get('username'), 'password' => Input::get('password')])) {
                 // Authentication passed...
+              
                 return redirect()->intended('/');
             } else {
 

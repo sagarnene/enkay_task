@@ -260,7 +260,7 @@
 
                         $('#comment_field').append('<div class="alert alert-info">' +
                                 '<p>' + data.report[index].comment + '</p>' +
-                                '<p>' + data.report[index].added_by +'<span class="pull-right">Commented at: '+ data.report[index].added_on +'</span>'+ '</p>' +
+                                '<p>' + data.report[index].employee_name + '<span class="pull-right">Commented at: ' + data.report[index].added_on + '</span>' + '</p>' +
                                 '</div>');
                     });
                 }

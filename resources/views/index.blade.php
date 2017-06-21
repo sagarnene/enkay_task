@@ -1,4 +1,9 @@
 @include('header');
+<link href="assets/css/jquery.multiselect.css" rel="stylesheet" type="text/css">
+<style>
+ul,li { margin:0; padding:0; list-style:none;}
+.ms-options ul{padding: 0 10px;}
+</style>
 <!-- MAIN PANEL -->
 <div id="main" role="main"> 
 
@@ -67,17 +72,22 @@
                                         <table id="datatable_fixed_column" class="table table-striped table-bordered table-hover dataTable no-footer" width="100%" role="grid" aria-describedby="dt_basic_info" style="width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th class="hasinput" style="width:17%">
+                                                    <th class="hasinput" style="width:7%">
                                                         <input type="text" class="form-control" placeholder="ID" />
                                                     </th>
-
-                                                    <th class="hasinput" style="width:16%">
+                                                     <th class="hasinput" style="width:27%">
+                                                        <input type="text" class="form-control" placeholder="Summary" />
+                                                    </th>
+                                                    <th class="hasinput" style="width:27%">
+                                                        <input type="text" class="form-control" placeholder="Description" />
+                                                    </th>
+                                                    <th class="hasinput" style="width:10%">
                                                         <input type="text" class="form-control" placeholder="Assignee" />
                                                     </th>
-                                                    <th class="hasinput" style="width:17%">
+                                                    <th class="hasinput" style="width:10%">
                                                         <input type="text" class="form-control" placeholder="Status" />
                                                     </th>
-                                                    <th class="hasinput" style="width:16%">
+                                                    <th class="hasinput" style="width:10%">
                                                         <input type="text" class="form-control" placeholder="Priority" />
                                                     </th>
                                                     <th class="hasinput icon-addon">
@@ -258,13 +268,13 @@
                                         </select>
                                         <div id="assignee_error"></div>
                                     </div>
-                                    <div class="form-group">
+                                    <!--div class="form-group">
                                         <label for="category">Status</label>
                                         <select name="status" class="form-control" id="status">
                                            
                                         </select>
                                         <div id="status_error"></div>
-                                    </div>
+                                    </div-->
                                     <div class="form-group">
                                         <label for="category">Priority</label>
                                         <select name="priority" class="form-control" id="priority">
@@ -317,6 +327,14 @@
 
                             <div class="row">
                                 <div class="col-md-12">
+                                     <div class="form-group">
+                                         <select name="multiselect_assignee[]" multiple id="multiselect_assignee">
+   
+                                               
+
+                                        </select>
+                                    
+                                         </div>
                                     <div class="form-group">
                                         <span class="input-icon-outer">
                                             <input name="expiry_date" id="expiry_date" type="text" placeholder="Expiry Date" class="form-control datepicker" data-dateformat="yy-mm-dd">
@@ -355,7 +373,8 @@
 @include('footer')
 <script>
     $(document).ready(function () {
-
+       simpleDropDown('employee', 'rol_id', 'multiselect_assignee');
+        
         simpleDropDown('employee', 'rol_id', 'assignee');
         simpleDropDown('status', 'id', 'status');
         simpleDropDown('priority', 'id', 'priority');
@@ -418,11 +437,22 @@
                 if (data.success) {
                     // alert(4);
                     $('#' + dropdown_name).empty();
-                    $('#' + dropdown_name).append('<option value="">Select</option>');
+                    if(dropdown_name!='multiselect_assignee'){
+                        $('#' + dropdown_name).append('<option value="">Select</option>');
+                    }
+                    
                     $.each(data.report, function (index, value) {
 
                         $('#' + dropdown_name).append('<option value=' + data.report[index].id + '>' + data.report[index].name + '</option>');
                     });
+                     if(dropdown_name=='multiselect_assignee'){
+                    $('#multiselect_assignee').multiselect({
+                            columns: 2,
+                            placeholder: 'Select Languages',
+                            search: true,
+                            selectAll: true
+                        });
+                    }
                 }
             },
             error: function (html) {
@@ -434,4 +464,12 @@
         });
 
     }
+   
+</script>
+
+
+<script src="assets/js/jquery.multiselect.js"></script>
+<script>
+
+
 </script>

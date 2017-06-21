@@ -125,6 +125,8 @@ class TaskController extends Controller {
     }
 
     public function add_notification() {
+       
+        
         $expiry_date = Input::get('expiry_date');
         $comments = Input::get('comments');
         $notification_id = Input::get('id');
@@ -148,7 +150,8 @@ class TaskController extends Controller {
             $data = array(
                 'id' => DB::table('notification')->max('id') + 1,
                 'expiry_date' => $expiry_date,
-                'comments' => $comments
+                'comments' => $comments,
+                'manager'=>$manager
             );
             if ($notification_id != 0) {
                 $update_notification = new TaskModel;
@@ -161,7 +164,20 @@ class TaskController extends Controller {
             } else {
                 $add_task = new TaskModel;
                 $add_task->save_data($table, $data);
-
+                
+                foreach (Input::get('multiselect_assignee') as $emp){
+                    $notification_data = array(
+                        'id' => DB::table('ntf_assignee')->max('id') + 1,
+                        'ntf_id' => DB::table('notification')->max('id'),
+                        'assignee' => $emp
+                    );
+                    
+                    $add_notification= new TaskModel;
+                    $add_notification->save_data('ntf_assignee', $notification_data);
+                
+                }
+                
+                
                 return Response::json(array(
                             'success' => true,
                             'msg' => "Notification has added Successfully!"

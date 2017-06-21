@@ -36,10 +36,11 @@ class TaskModel {
     }
 
     public function show_assignee_notification($id,$column) {
+       
         return DB::select('SELECT n.id, n.expiry_date, n.comments
                             FROM ntf_assignee en, notification n
                             where en.ntf_id=n.id
-                            and en.assignee=3');
+                            and en.assignee='.$id);
          
     }
 
@@ -52,7 +53,11 @@ class TaskModel {
     }
     public function view_filtered_data($table, $cloumn,$id) {
 
-        return DB::table($table)->where($cloumn,$id)->get();
+        //return DB::table($table)->where($cloumn,$id)->get();
+         return DB::select('select  e1.name as employee_name, tc.comment, tc.added_on,tc.added_by,tc.task_id,tc.id
+            from employee e1, task_comments tc 
+            where tc.added_by = e1.id
+            and tc.task_id=' . $id);
     }
     public function show_one_data($table, $cloumn,$id) {
 

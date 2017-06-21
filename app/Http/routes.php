@@ -28,5 +28,6 @@ Route::get('logout','UserController@logout');
 
 Route::get('logout', function () {
     Auth::logout();
+    session()->flush();
     return redirect('login');
 });
