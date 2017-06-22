@@ -267,5 +267,42 @@ class TaskController extends Controller {
                     'report' => $drop_down_data
         ));
     }
+    public function update_description() {
+       
+        $task_id = Input::get('task_id');
+        $description = Input::get('description');
 
+        
+        $table = 'task';
+        $validator = Validator::make(
+                        array(
+                    'task_id' => $task_id,
+                    'description' => $description
+                        ), array(
+                    "task_id" => 'required',
+                    "description" => 'required'
+                        )
+        );
+        if ($validator->fails()) {
+            return Response::json(array(
+                        'fail' => true,
+                        'errors' => $validator->getMessageBag()->toArray()
+            ));
+        } else {
+            $data = array(
+                'id' => $task_id,
+                'description' => $description
+                
+            );
+            
+                $update_description = new TaskModel;
+                $update_description->update_data($table, $data,'id',$task_id);
+
+                return Response::json(array(
+                            'success' => true,
+                            'msg' => "Description has updated Successfully!"
+                ));
+            
+        }
+    }
 }

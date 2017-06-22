@@ -53,7 +53,9 @@
 		<link rel="apple-touch-startup-image" href="assets/img/splash/iphone.png" media="screen and (max-device-width: 320px)">
 
 	</head>
-	
+        <style>
+            #datatable_fixed_column_filter,#dt_basic_filter,.pText{display:none;}
+        </style>
 <body class="">
 <form>
   <!-- HEADER -->
@@ -80,6 +82,3 @@
     <!-- end pulled right: nav area --> 
     
   </header>
-  
- 
-    

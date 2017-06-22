@@ -16,6 +16,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('add-task','TaskController@add_task');
     Route::get('add-notification','TaskController@add_notification');
     Route::get('add-comment','TaskController@add_comment');
+    Route::get('update-description','TaskController@update_description');
     Route::get('show-comment','TaskController@show_comment');
     Route::get('simple-drop-down','TaskController@simple_drop_down');
     Route::get('task-details','TaskController@task_details');

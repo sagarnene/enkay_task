@@ -1,4 +1,10 @@
 @include('header')
+<style>
+.des_btn{padding-top:10px;}       
+.mrt10{ margin-right: 10px; margin-bottom: 15px;}
+#comment_field{ margin-top: 15px;}
+.clear{ clear:both;}
+</style>
 <!-- MAIN PANEL -->
 <div id="main" role="main"> 
 
@@ -7,7 +13,7 @@
 
         <!-- breadcrumb -->
         <ol class="breadcrumb">
-            <li>Home</li>
+            <li><a href="{{ URL('/') }}">Home</a></li>
             <li>Task</li>
         </ol>
         <!-- end breadcrumb --> 
@@ -30,7 +36,7 @@
 
         <!-- Row starts here -->
         <div class="row">
-            <p class="task-heading-breadcrumb"><i class="fa fa-tag"></i> <a href="#">Task</a> / <a href="#">{!! Input::get('id') !!}</a></p>
+            <p class="task-heading-breadcrumb"><i class="fa fa-tag"></i>Task / {!! Input::get('id') !!}</p>
             <h2 class="row-seperator-header">Summary</h2>
 
             <div class="col-sm-12">
@@ -46,11 +52,12 @@
                             <!-- row -->
                             <div class="row">
 
-                                <div class="col-md-12 detail-heading-list">
+                                <div class="col-md-12">
                                     <input type="hidden" id="task_id" value="{!! $task->id !!}">
-                                    <p><span><strong>Status:</strong></span> <span class="list-value">{!! $task->status_name !!}</span></p>
-                                    <p><span><strong>Priority:</strong></span> <span class="list-value">{!! $task->priority_name !!}</span></p>
-                                    <p><span><strong>Assignee:</strong></span> <span class="list-value">{!! $task->assignee !!}</span></p>
+                                    <div class="col-md-4"><span><strong>Status:</strong></span> <span class="list-value">{!! $task->status_name !!}</span></div>
+                                    <div class="col-md-4"><span><strong>Priority:</strong></span> <span class="list-value">{!! $task->priority_name !!}</span></div>
+                                    <div class="col-md-4"><span><strong>Assignee:</strong></span> <span class="list-value">{!! $task->assignee !!}</span></div>
+                                    
                                 </div>
 
 
@@ -74,11 +81,33 @@
 
                                     <div class="form-group">
                                         @if(Auth::user()->role_id==1)
-                                        <textarea class="form-control" placeholder="Comments" rows="5" required> {!! $task->due_date !!}</textarea>
+                                        <textarea class="form-control" placeholder="Comments" id="description_data" rows="5" required> {!! $task->description !!}</textarea>
+                                        <div class="btn-group pull-right des_btn">
+
+                                                        <button class="btn btn-sm btn-success mrt10" type="button" onclick="updateDescription('update-description');">
+                                                            <i class="fa fa-check"></i> Update
+                                                        </button>	
+
+                                                    
+                                                    <button class="btn btn-sm btn-primary" type="button" onclick="location.reload()">
+                                                        <i class="fa fa-times"></i> Discard
+                                                    </button>	
+                                            </div>
                                         @else
-                                        <p><span class="list-value">{!! $task->due_date !!}</span></p>
+                                        <div class="col-md-12"><span class="list-value">{!! $task->description !!}</span></div>
                                         @endif
                                     </div>
+                                  
+
+                                                
+                                                    
+
+                                               
+
+
+
+
+                                            </div>
 
                                 </div>
 
@@ -97,9 +126,7 @@
                         <!-- col -->
                         <div class="col-sm-12">
                             <p class="detail-heading"><strong>Task Updates</strong></p>
-                            <div id="comment_field">
-
-                            </div>
+                            
                             <!-- row -->
                             <div class="row">
 
@@ -134,19 +161,19 @@
 
                                             <div class="widget-footer smart-form">
 
-                                                <div class="btn-group">
-                                                    <div class="btn-group">
+                                                
+                                                    <div class="btn-group des_btn">
 
-                                                        <button class="btn btn-sm btn-success" type="button" onclick="saveComment('add-comment');">
+                                                        <button class="btn btn-sm btn-success mrt10" type="button" onclick="saveComment('add-comment');">
                                                             <i class="fa fa-check"></i> Add
                                                         </button>	
 
-                                                    </div>
+                                                    
                                                     <button class="btn btn-sm btn-primary" type="button" onclick="$('#comment_box_body').text('')">
                                                         <i class="fa fa-times"></i> Cancel
-                                                    </button>	
+                                                    </button>
+                                                        </div>
 
-                                                </div>
 
 
 
@@ -165,6 +192,9 @@
 
                             </div>
                             <!-- end row -->
+                            <div id="comment_field">
+
+                            </div>
                         </div>
                         <!-- end col -->
                     </div>
@@ -189,6 +219,55 @@
 
         showComment('task_comments', 'task_id', $("#task_id").val());
     });
+    function updateDescription(url) {
+        alert($("#description_data").val());
+        //$("#task_id").val(),
+
+        //alert($("form").serialize());
+        var formData = {
+            'description': $("#description_data").val(),
+            'task_id': $("#task_id").val()
+
+        };
+        $('.required_field').empty();
+        console.log(formData);
+
+        $.ajax({
+            type: 'get',
+            url: url,
+            dataType: 'json',
+            data: formData,
+            beforeSend: function (html) {
+
+            },
+            success: function (data) {
+
+                if (data.fail) {
+                    $.each(data.errors, function (index, value) {
+
+                        var errorDiv = '#' + index + '_error';
+
+                        $(errorDiv).addClass('required_field');
+
+                        $(errorDiv).empty().append(value);
+                    });
+                    $('#successMessage').empty();
+                } else {
+                    //showComment('task_comments', 'task_id', $("#task_id").val());
+                    //$("#comment_box_body").text('')
+                    //location.reload();
+                    alert('Description updated');
+                }
+
+            },
+            error: function (html) {
+
+                console.log(html);
+
+            }
+        });
+
+    }
     function saveComment(url) {
         //alert( );
         //$("#task_id").val(),
@@ -256,12 +335,19 @@
                     // alert(4);
 
                     $('#comment_field').html('');
+                    var color_code;
+                    var color_choice=1;
                     $.each(data.report, function (index, value) {
-
-                        $('#comment_field').append('<div class="alert alert-info">' +
+                        color_choice++;
+                        if(color_choice%2==0){
+                            color_code="alert-info";
+                        }else{
+                            color_code="alert-info2";
+                        }
+                        $('#comment_field').append('<div class="alert '+color_code+' ">' +
                                 '<p>' + data.report[index].comment + '</p>' +
-                                '<p>' + data.report[index].employee_name + '<span class="pull-right">Commented at: ' + data.report[index].added_on + '</span>' + '</p>' +
-                                '</div>');
+                                '<div><p class="pull-right"> Commented by: ' + data.report[index].employee_name + '<br/><span class="">Commented at: ' + data.report[index].added_on + '</span>' + '</p></div>' +
+                                '<div class="clear"></div></div>');
                     });
                 }
             },

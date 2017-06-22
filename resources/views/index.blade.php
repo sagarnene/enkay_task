@@ -1,8 +1,9 @@
-@include('header');
+@include('header')
 <link href="assets/css/jquery.multiselect.css" rel="stylesheet" type="text/css">
 <style>
 ul,li { margin:0; padding:0; list-style:none;}
 .ms-options ul{padding: 0 10px;}
+.btn_task{float:right; margin:10px 10px 0px;}
 </style>
 <!-- MAIN PANEL -->
 <div id="main" role="main"> 
@@ -40,7 +41,7 @@ ul,li { margin:0; padding:0; list-style:none;}
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <button class="btn btn-info" data-toggle="modal" data-target="#task_modal">Create Task</button>
+                        
                     </div>
                 </div>
                 <div class="row"> 
@@ -53,8 +54,10 @@ ul,li { margin:0; padding:0; list-style:none;}
 
                             <header role="heading">
                                 <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-                                <h2>Task Management Details</h2>
-                                <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
+                                <h2>Tasks</h2>
+                                <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+                                <button class="btn btn-info btn_task" data-toggle="modal" data-target="#task_modal"><span class="widget-icon"> <i class="fa fa-plus"></i> </span> New Task </button>
+                                </header>
 
                             <!-- widget div-->
                             <div role="content"> 
@@ -68,7 +71,7 @@ ul,li { margin:0; padding:0; list-style:none;}
 
                                 <!-- widget content -->
                                 <div class="widget-body no-padding">
-                                    <div id="datatable_fixed_column_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                    <div id="datatable_fixed_column_wrapper" class="table-responsive dataTables_wrapper form-inline dt-bootstrap no-footer">
                                         <table id="datatable_fixed_column" class="table table-striped table-bordered table-hover dataTable no-footer" width="100%" role="grid" aria-describedby="dt_basic_info" style="width: 100%;">
                                             <thead>
                                                 <tr>
@@ -113,7 +116,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                 @foreach($task_list as $task)
                                                 <?php $i++; ?>
                                                 <tr role="row" class="odd">
-                                                    <td><a href='task-details?id={!! $task->id !!}'>{!! $i !!}</a></td>
+                                                    <td><a href='task-details?id={!! $task->id !!}'>{!! $task->id !!}</a></td>
                                                      <td><span class="responsiveExpander"></span>{!! $task->summary !!}</td>
                                                     <td>{!! $task->description !!}</td>
                                                     <td><span class="responsiveExpander"></span>{!! $task->assignee !!}</td>
@@ -148,7 +151,7 @@ ul,li { margin:0; padding:0; list-style:none;}
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <button class="btn btn-info" data-toggle="modal" data-target="#notification_modal">Create Notification</button>
+                        
                     </div>
                 </div>
                 <div class="row"> 
@@ -161,8 +164,10 @@ ul,li { margin:0; padding:0; list-style:none;}
 
                             <header role="heading">                       
                                 <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-                                <h2>Notification Details</h2>
-                                <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span></header>
+                                <h2>Notifications</h2>
+                                <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+                                <button class="btn btn-info btn_task" data-toggle="modal" data-target="#notification_modal">Create Notification</button>
+                                </header>
 
                             <!-- widget div-->
                             <div role="content"> 
@@ -176,7 +181,7 @@ ul,li { margin:0; padding:0; list-style:none;}
 
                                 <!-- widget content -->
                                 <div class="widget-body no-padding">
-                                    <div id="dt_basic_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                    <div id="dt_basic_wrapper" class="table-responsive dataTables_wrapper form-inline dt-bootstrap no-footer">
                                         <table id="dt_basic" class="table table-striped table-bordered table-hover dataTable no-footer" width="100%" role="grid" aria-describedby="dt_basic_info" style="width: 100%;">
                                             <thead>
                                                 <tr>
@@ -212,7 +217,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                 @foreach($notification_list as $notification)
                                                 <?php $i++; ?>
                                                 <tr role="row" class="odd">
-                                                    <td>{!! $i !!}</td>
+                                                    <td>{!! $notification->id !!}</td>
                                                     <td>{!! $notification->comments !!}</td>
                                                     <td>{!! $notification->expiry_date !!}</td>                   
 

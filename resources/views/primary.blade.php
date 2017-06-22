@@ -1,4 +1,4 @@
-@include('header');
+@include('header')
 <!-- MAIN PANEL -->
 <div id="main" role="main"> 
 
@@ -59,7 +59,7 @@
 
                                 <!-- widget content -->
                                 <div class="widget-body no-padding">
-                                    <div id="datatable_fixed_column_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                    <div id="datatable_fixed_column_wrapper" class="table-responsive dataTables_wrapper form-inline dt-bootstrap no-footer">
                                         <table id="datatable_fixed_column" class="table table-striped table-bordered table-hover dataTable no-footer" width="100%" role="grid" aria-describedby="dt_basic_info" style="width: 100%;">
                                             <thead>
                                                 <tr>
@@ -100,11 +100,11 @@
                                                 @foreach($task_list as $task)
                                                 <?php $i++; ?>
                                                 <tr role="row" class="odd">
-                                                    <td><a href='task-details?id={!! $task->id !!}'>{!! $i !!}</a></td>
+                                                    <td><a href='task-details?id={!! $task->id !!}'>{!! $task->id !!}</a></td>
                                                     <td>{!! $task->manager !!}</td>
 
-                                                    <td>{!! $task->status !!}</td>
-                                                    <td>{!! $task->priority !!}</td>
+                                                    <td>{!! $task->status_name !!}</td>
+                                                    <td>{!! $task->priority_name !!}</td>
                                                     <td>{!! $task->due_date !!}</td>
 
                                                 </tr>
@@ -158,7 +158,7 @@
 
                                 <!-- widget content -->
                                 <div class="widget-body no-padding">
-                                    <div id="dt_basic_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                    <div id="dt_basic_wrapper" class="table-responsive  dataTables_wrapper form-inline dt-bootstrap no-footer">
                                         <table id="dt_basic" class="table table-striped table-bordered table-hover dataTable no-footer" width="100%" role="grid" aria-describedby="dt_basic_info" style="width: 100%;">
                                             <thead>
                                                 <tr>
@@ -194,7 +194,7 @@
                                                 @foreach($notification_list as $notification)
                                                 <?php $i++; ?>
                                                 <tr role="row" class="odd">
-                                                    <td>{!! $i !!}</td>
+                                                    <td>{!! $notification->id !!}</td>
                                                     <td>{!! $notification->comments !!}</td>
                                                     <td>{!! $notification->expiry_date !!}</td>                   
 

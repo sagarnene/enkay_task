@@ -13,9 +13,10 @@
                 
                 <tr>
                     <th>ID</th>
-                    <th>Summary</th>
-                    <th>Description</th>
                     <th>Assignee</th>
+                    <th>Summary</th>
+                    
+                    
                     <th>Status</th>
                     <th>Priority</th>
                     <th>Comment</th>
@@ -30,9 +31,10 @@
                 <?php $i++; ?>
                 <tr>
                     <td>{!! $task->id !!}</td>
+                     <td><span class="responsiveExpander"></span>{!! $task->employee_name !!}</td>
                     <td><span class="responsiveExpander"></span>{!! $task->summary !!}</td>
-                    <td>{!! $task->description !!}</td>
-                    <td><span class="responsiveExpander"></span>{!! $task->employee_name !!}</td>
+                   
+                   
                     <td>{!! $task->status_name !!}</td>
                     <td>{!! $task->priority_name !!}</td>
                      <td>{!! $task->comment !!}</td>

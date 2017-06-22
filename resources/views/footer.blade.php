@@ -1,48 +1,8 @@
 <!-- PAGE FOOTER -->
   <div class="page-footer">
     <div class="row">
-      <div class="col-xs-12 col-sm-6"> <span class="txt-color-white">SmartAdmin 1.8.2 <span class="hidden-xs"> - Web Application Framework</span> © 2014-2015</span> </div>
-      <div class="col-xs-6 col-sm-6 text-right hidden-xs">
-        <div class="txt-color-white inline-block"> <i class="txt-color-blueLight hidden-mobile">Last account activity <i class="fa fa-clock-o"></i> <strong>52 mins ago &nbsp;</strong> </i>
-          <div class="btn-group dropup">
-            <button class="btn btn-xs dropdown-toggle bg-color-blue txt-color-white" data-toggle="dropdown"> <i class="fa fa-link"></i> <span class="caret"></span> </button>
-            <ul class="dropdown-menu pull-right text-left">
-              <li>
-                <div class="padding-5">
-                  <p class="txt-color-darken font-sm no-margin">Download Progress</p>
-                  <div class="progress progress-micro no-margin">
-                    <div class="progress-bar progress-bar-success" style="width: 50%;"></div>
-                  </div>
-                </div>
-              </li>
-              <li class="divider"></li>
-              <li>
-                <div class="padding-5">
-                  <p class="txt-color-darken font-sm no-margin">Server Load</p>
-                  <div class="progress progress-micro no-margin">
-                    <div class="progress-bar progress-bar-success" style="width: 20%;"></div>
-                  </div>
-                </div>
-              </li>
-              <li class="divider"></li>
-              <li>
-                <div class="padding-5">
-                  <p class="txt-color-darken font-sm no-margin">Memory Load <span class="text-danger">*critical*</span></p>
-                  <div class="progress progress-micro no-margin">
-                    <div class="progress-bar progress-bar-danger" style="width: 70%;"></div>
-                  </div>
-                </div>
-              </li>
-              <li class="divider"></li>
-              <li>
-                <div class="padding-5">
-                  <button class="btn btn-block btn-default">refresh</button>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <div class="col-xs-12 col-sm-12"> <span class="txt-color-white">ENKAY <span class="hidden-xs"> - Homes LTD</span> © 2017</span> </div>
+      
     </div>
   </div>
   <!-- END PAGE FOOTER --> 
@@ -280,6 +240,7 @@
 				};
 	
 				 var otable2 =$('#dt_basic').DataTable({
+                                    
 					"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-12 hidden-xs'l>r>"+
 						"t"+
 						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
@@ -298,7 +259,8 @@
 					},
 					"drawCallback" : function(oSettings) {
 						responsiveHelper_dt_basic.respond();
-					}
+					},
+                                          "order": [[ 0, 'desc' ]] 
 				});
                                 // custom toolbar
 		    $("div.toolbar").html('<div class="text-right"><img src="assets/img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
@@ -334,7 +296,8 @@
 					},
 					"drawCallback" : function(oSettings) {
 						responsiveHelper_datatable_fixed_column.respond();
-					}
+					},
+                                           "order": [[ 0,'desc' ]] 
 				});
                                 // custom toolbar
 		    $("div.toolbar").html('<div class="text-right"><img src="assets/img/logo.png" alt="SmartAdmin" style="width: 111px; margin-top: 3px; margin-right: 10px;"></div>');
@@ -351,76 +314,9 @@
 		    
 		    /* END COLUMN FILTER */   
 	    
-			/* COLUMN SHOW - HIDE */
-			$('#datatable_col_reorder').dataTable({
-				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'C>r>"+
-						"t"+
-						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
-				"autoWidth" : true,
-				"oLanguage": {
-					"sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-				},
-				"preDrawCallback" : function() {
-					// Initialize the responsive datatables helper once.
-					if (!responsiveHelper_datatable_col_reorder) {
-						responsiveHelper_datatable_col_reorder = new ResponsiveDatatablesHelper($('#datatable_col_reorder'), breakpointDefinition);
-					}
-				},
-				"rowCallback" : function(nRow) {
-					responsiveHelper_datatable_col_reorder.createExpandIcon(nRow);
-				},
-				"drawCallback" : function(oSettings) {
-					responsiveHelper_datatable_col_reorder.respond();
-				}			
-			});
 			
-			/* END COLUMN SHOW - HIDE */
 	
-			/* TABLETOOLS */
-			$('#datatable_tabletools').dataTable({
-				
-				// Tabletools options: 
-				//   https://datatables.net/extensions/tabletools/button_options
-				"sDom": "<'dt-toolbar'<'col-xs-12 col-sm-6'f><'col-sm-6 col-xs-6 hidden-xs'T>r>"+
-						"t"+
-						"<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-sm-6 col-xs-12'p>>",
-				"oLanguage": {
-					"sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
-				},		
-		        "oTableTools": {
-		        	 "aButtons": [
-		             "copy",
-		             "csv",
-		             "xls",
-		                {
-		                    "sExtends": "pdf",
-		                    "sTitle": "SmartAdmin_PDF",
-		                    "sPdfMessage": "SmartAdmin PDF Export",
-		                    "sPdfSize": "letter"
-		                },
-		             	{
-	                    	"sExtends": "print",
-	                    	"sMessage": "Generated by SmartAdmin <i>(press Esc to close)</i>"
-	                	}
-		             ],
-		            "sSwfPath": "js/plugin/datatables/swf/copy_csv_xls_pdf.swf"
-		        },
-				"autoWidth" : true,
-				"preDrawCallback" : function() {
-					// Initialize the responsive datatables helper once.
-					if (!responsiveHelper_datatable_tabletools) {
-						responsiveHelper_datatable_tabletools = new ResponsiveDatatablesHelper($('#datatable_tabletools'), breakpointDefinition);
-					}
-				},
-				"rowCallback" : function(nRow) {
-					responsiveHelper_datatable_tabletools.createExpandIcon(nRow);
-				},
-				"drawCallback" : function(oSettings) {
-					responsiveHelper_datatable_tabletools.respond();
-				}
-			});
 			
-			/* END TABLETOOLS */
 		
 		})
 
