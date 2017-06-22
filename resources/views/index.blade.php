@@ -205,18 +205,19 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                         <input type="text" class="form-control" placeholder="ID" />
                                                     </th>
                                                     <th class="hasinput">
-                                                        <div class="input-group" >
+                                                        
                                                             <input class="form-control" placeholder="Send to" type="text">
 
-                                                        </div>
+                                                     
 
 
                                                     </th>
+                                                    
                                                     <th class="hasinput">
-                                                        <div class="input-group" >
+                                                        
                                                             <input class="form-control" placeholder="Comments" type="text">
 
-                                                        </div>
+                                                       
 
 
                                                     </th>

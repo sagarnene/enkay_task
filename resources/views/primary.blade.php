@@ -173,10 +173,10 @@
                                                         <input type="text" class="form-control" placeholder="ID" />
                                                     </th>
                                                     <th class="hasinput" style="width:80%">
-                                                        <div class="input-group">
+                                                        
                                                             <input class="form-control" placeholder="Comments" type="text">
 
-                                                        </div>
+                                                       
 
 
                                                     </th>
