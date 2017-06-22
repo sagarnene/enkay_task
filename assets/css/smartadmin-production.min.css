@@ -10079,7 +10079,9 @@ aside {
 }
 #ribbon .breadcrumb, #ribbon .breadcrumb a {
 	color: #000!important;
-	text-decoration: none!Important
+	text-decoration: none!Important;
+        font-weight:bold;
+        font-size:16px;
 }
 #ribbon .breadcrumb>li+li:before{ color:#000;}
 #ribbon .breadcrumb li:last-child, #ribbon .breadcrumb>.active {

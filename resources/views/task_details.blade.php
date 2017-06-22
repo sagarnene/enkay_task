@@ -2,8 +2,9 @@
 <style>
 .des_btn{padding-top:10px;}       
 .mrt10{ margin-right: 10px; margin-bottom: 15px;}
-#comment_field{ margin-top: 15px;}
 .clear{ clear:both;}
+.comment_sec{ border: 1px solid #c2c2c2; padding: 10px;  height: 322px;     overflow-y: scroll;}
+#main .comment-box-table{ height: 322px;}
 </style>
 <!-- MAIN PANEL -->
 <div id="main" role="main"> 
@@ -36,19 +37,20 @@
 
         <!-- Row starts here -->
         <div class="row">
+             @foreach($task_list as $task)
             <p class="task-heading-breadcrumb"><i class="fa fa-tag"></i>Task / {!! Input::get('id') !!}</p>
-            <h2 class="row-seperator-header">Summary</h2>
+            <h2 class="row-seperator-header">{!! $task->summary !!}</h2>
 
             <div class="col-sm-12">
 
                 <!-- well -->
                 <div class="well">
-                    @foreach($task_list as $task)
+                   
                     <!-- row -->
                     <div class="row">
                         <!-- col -->
                         <div class="col-sm-12">
-                            <p class="detail-heading"><strong>Details</strong></p>
+                            <p class="detail-heading"><strong></strong></p>
                             <!-- row -->
                             <div class="row">
 
@@ -129,7 +131,7 @@
                             
                             <!-- row -->
                             <div class="row">
-
+                                <div class="col-md-6">
                                 <div class="jarviswidget jarviswidget-color-blue comment-box-table" id="wid-id-0" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-fullscreenbutton="false" data-widget-sortable="false" role="widget">
 
  <header role="heading"><!--div class="jarviswidget-ctrls" role="menu">     <a href="javascript:void(0);" class="button-icon jarviswidget-delete-btn" rel="tooltip" title="" data-placement="bottom" data-original-title="Delete"><i class="fa fa-times"></i></a></div-->
@@ -169,7 +171,7 @@
                                                         </button>	
 
                                                     
-                                                    <button class="btn btn-sm btn-primary" type="button" onclick="$('#comment_box_body').text('')">
+                                                    <button class="btn btn-sm btn-primary mrt10" type="button" onclick="$('#comment_box_body').text('')">
                                                         <i class="fa fa-times"></i> Cancel
                                                     </button>
                                                         </div>
@@ -188,13 +190,18 @@
 
                                 </div>
 
-
-
-                            </div>
-                            <!-- end row -->
+                                    </div>
+                                <div class="col-md-6">
+                                    <div class="comment_sec mrt20">
                             <div id="comment_field">
 
                             </div>
+                            </div>
+                                </div>
+
+                            </div>
+                            <!-- end row -->
+                            
                         </div>
                         <!-- end col -->
                     </div>
@@ -220,7 +227,7 @@
         showComment('task_comments', 'task_id', $("#task_id").val());
     });
     function updateDescription(url) {
-        alert($("#description_data").val());
+        //alert($("#description_data").val());
         //$("#task_id").val(),
 
         //alert($("form").serialize());
@@ -256,7 +263,7 @@
                     //showComment('task_comments', 'task_id', $("#task_id").val());
                     //$("#comment_box_body").text('')
                     //location.reload();
-                    alert('Description updated');
+                    //alert('Description updated');
                 }
 
             },
@@ -346,7 +353,7 @@
                         }
                         $('#comment_field').append('<div class="alert '+color_code+' ">' +
                                 '<p>' + data.report[index].comment + '</p>' +
-                                '<div><p class="pull-right"> Commented by: ' + data.report[index].employee_name + '<br/><span class="">Commented at: ' + data.report[index].added_on + '</span>' + '</p></div>' +
+                                '<div><p class="pull-right"> Commented by ' + data.report[index].employee_name + '<span class=""> at: ' + data.report[index].added_on + '</span>' + '</p></div>' +
                                 '<div class="clear"></div></div>');
                     });
                 }

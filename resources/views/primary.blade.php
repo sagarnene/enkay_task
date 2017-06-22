@@ -63,19 +63,24 @@
                                         <table id="datatable_fixed_column" class="table table-striped table-bordered table-hover dataTable no-footer" width="100%" role="grid" aria-describedby="dt_basic_info" style="width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th class="hasinput" style="width:17%">
+                                                    <th class="hasinput" style="width:7%">
                                                         <input type="text" class="form-control" placeholder="ID" />
                                                     </th>
-                                                    <th class="hasinput" style="width:18%">
+                                                    <th class="hasinput" style="width:52%">
+
+                                                        <input class="form-control" placeholder="Summary" type="text">
+
+                                                    </th>
+                                                    <th class="hasinput" style="width:10%">
 
                                                         <input class="form-control" placeholder="Manager" type="text">
 
                                                     </th>
 
-                                                    <th class="hasinput" style="width:17%">
+                                                    <th class="hasinput" style="width:10%">
                                                         <input type="text" class="form-control" placeholder="Status" />
                                                     </th>
-                                                    <th class="hasinput" style="width:16%">
+                                                    <th class="hasinput" style="width:10%">
                                                         <input type="text" class="form-control" placeholder="Priority" />
                                                     </th>
                                                     <th class="hasinput icon-addon">
@@ -86,6 +91,7 @@
                                                 </tr>
                                                 <tr role="row">
                                                     <th>ID</th>
+                                                    <th>Summary</th>
                                                     <th>Manager</th>
 
                                                     <th>Status</th>
@@ -100,7 +106,8 @@
                                                 @foreach($task_list as $task)
                                                 <?php $i++; ?>
                                                 <tr role="row" class="odd">
-                                                    <td><a href='task-details?id={!! $task->id !!}'>{!! $task->id !!}</a></td>
+                                                    <td>{!! $task->id !!}</td>
+                                                    <td><a href='task-details?id={!! $task->id !!}'>{!! $task->summary !!}</a></td>
                                                     <td>{!! $task->manager !!}</td>
 
                                                     <td>{!! $task->status_name !!}</td>
@@ -162,10 +169,10 @@
                                         <table id="dt_basic" class="table table-striped table-bordered table-hover dataTable no-footer" width="100%" role="grid" aria-describedby="dt_basic_info" style="width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th class="hasinput" style="width:10%">
+                                                    <th class="hasinput" style="width:7%">
                                                         <input type="text" class="form-control" placeholder="ID" />
                                                     </th>
-                                                    <th class="hasinput" >
+                                                    <th class="hasinput" style="width:80%">
                                                         <div class="input-group">
                                                             <input class="form-control" placeholder="Comments" type="text">
 
@@ -173,7 +180,7 @@
 
 
                                                     </th>
-                                                    <th class="hasinput icon-addon">
+                                                    <th class="hasinput icon-addon" style="width:13%">
                                                         <input id="exp_dateselect_filter" type="text" placeholder="Expiry Date" class="form-control datepicker" data-dateformat="yy-mm-dd">
                                                         <label for="dateselect_filter" class="glyphicon glyphicon-calendar no-margin padding-top-15" rel="tooltip" title="" data-original-title="Expiry Date"></label>
                                                     </th>
@@ -234,7 +241,7 @@
     });
 
     function saveData(url) {
-        alert($("form").serialize());
+       // alert($("form").serialize());
         var formData = {
             'assignee': $("#assignee").val(),
             'status': $("#status").val(),

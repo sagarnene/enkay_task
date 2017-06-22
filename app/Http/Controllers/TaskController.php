@@ -53,12 +53,12 @@ class TaskController extends Controller {
                     'priority' => $priority,
                     'due_date' => $due_date
                         ), array(
-                    'summary' => 'required',
-                    "description" => 'required',
+                    'summary' => 'required | between:5,100',
+                    "description" => 'required | between:5,300',
                     "assignee" => 'required',
                     "status" => 'required',
                     "priority" => 'required',
-                    "due_date" => 'required'
+                    "due_date" => 'required | date_format:Y-m-d'
                         )
         );
         if ($validator->fails()) {
@@ -137,8 +137,8 @@ class TaskController extends Controller {
                     'expiry_date' => $expiry_date,
                     'comments' => $comments
                         ), array(
-                    "expiry_date" => 'required',
-                    "comments" => 'required'
+                    "expiry_date" => 'required | date_format:Y-m-d',
+                    "comments" => 'required | between:5,400'
                         )
         );
         if ($validator->fails()) {
@@ -174,6 +174,12 @@ class TaskController extends Controller {
 
                     $add_notification = new TaskModel;
                     $add_notification->save_data('ntf_assignee', $notification_data);
+                    
+                    /*Mail::send('emails.notofication', ['name' => $assignee_data->email, 'manager_name' => $manager_data->name, 'summary' => $summary], function ($message) use ($assignee_data) {
+
+                        $message->to($assignee_data->email);
+                        $message->subject('Notification');
+                    });*/
                 }
 
 

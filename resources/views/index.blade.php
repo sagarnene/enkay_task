@@ -13,7 +13,7 @@ ul,li { margin:0; padding:0; list-style:none;}
 
         <!-- breadcrumb -->
         <ol class="breadcrumb">
-            <li>Home</li>
+            <li><a href="{{ URL('/') }}">Home</a></li>
             <li>Dashboard</li>
         </ol>
         <!-- end breadcrumb --> 
@@ -78,12 +78,10 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                     <th class="hasinput" style="width:7%">
                                                         <input type="text" class="form-control" placeholder="ID" />
                                                     </th>
-                                                     <th class="hasinput" style="width:27%">
+                                                     <th class="hasinput" style="width:52%">
                                                         <input type="text" class="form-control" placeholder="Summary" />
                                                     </th>
-                                                    <th class="hasinput" style="width:27%">
-                                                        <input type="text" class="form-control" placeholder="Description" />
-                                                    </th>
+                                                    
                                                     <th class="hasinput" style="width:10%">
                                                         <input type="text" class="form-control" placeholder="Assignee" />
                                                     </th>
@@ -93,7 +91,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                     <th class="hasinput" style="width:10%">
                                                         <input type="text" class="form-control" placeholder="Priority" />
                                                     </th>
-                                                    <th class="hasinput icon-addon">
+                                                    <th class="hasinput icon-addon" >
                                                         <input id="dateselect_filter" type="text" placeholder="Due Date" class="form-control datepicker" data-dateformat="yy-mm-dd">
                                                         <label for="dateselect_filter" class="glyphicon glyphicon-calendar no-margin padding-top-15" rel="tooltip" title="" data-original-title="Due Date"></label>
                                                     </th>
@@ -102,7 +100,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                 <tr role="row">
                                                     <th>ID</th>
                                                     <th>Summary</th>
-                                                    <th>Description</th>
+                                                    
                                                     <th>Assignee</th>
                                                     <th>Status</th>
                                                     <th>Priority</th>
@@ -116,9 +114,9 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                 @foreach($task_list as $task)
                                                 <?php $i++; ?>
                                                 <tr role="row" class="odd">
-                                                    <td><a href='task-details?id={!! $task->id !!}'>{!! $task->id !!}</a></td>
-                                                     <td><span class="responsiveExpander"></span>{!! $task->summary !!}</td>
-                                                    <td>{!! $task->description !!}</td>
+                                                    <td>{!! $task->id !!}</td>
+                                                     <td><span class="responsiveExpander"></span><a href='task-details?id={!! $task->id !!}'>{!! $task->summary !!}</a></td>
+                                                  
                                                     <td><span class="responsiveExpander"></span>{!! $task->assignee !!}</td>
                                                     <td>{!! $task->status_name !!}</td>
                                                     <td>{!! $task->priority_name !!}</td>
@@ -166,7 +164,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                                 <span class="widget-icon"> <i class="fa fa-table"></i> </span>
                                 <h2>Notifications</h2>
                                 <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
-                                <button class="btn btn-info btn_task" data-toggle="modal" data-target="#notification_modal">Create Notification</button>
+                                <button class="btn btn-info btn_task" data-toggle="modal" data-target="#notification_modal"><span class="widget-icon"> <i class="fa fa-plus"></i> Create Notification</button>
                                 </header>
 
                             <!-- widget div-->
@@ -185,18 +183,18 @@ ul,li { margin:0; padding:0; list-style:none;}
                                         <table id="dt_basic" class="table table-striped table-bordered table-hover dataTable no-footer" width="100%" role="grid" aria-describedby="dt_basic_info" style="width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th class="hasinput" style="width:17%">
+                                                    <th class="hasinput" style="width:7%">
                                                         <input type="text" class="form-control" placeholder="ID" />
                                                     </th>
                                                     <th class="hasinput">
-                                                        <div class="input-group">
+                                                        <div class="input-group" >
                                                             <input class="form-control" placeholder="Comments" type="text">
 
                                                         </div>
 
 
                                                     </th>
-                                                    <th class="hasinput icon-addon" >
+                                                    <th class="hasinput icon-addon" style="width:13%">
                                                         <input id="exp_dateselect_filter" type="text" placeholder="Expiry Date" class="form-control datepicker" data-dateformat="yy-mm-dd">
                                                         <label for="dateselect_filter" class="glyphicon glyphicon-calendar no-margin padding-top-15" rel="tooltip" title="" data-original-title="Expiry Date"></label>
                                                     </th>
@@ -218,8 +216,8 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                 <?php $i++; ?>
                                                 <tr role="row" class="odd">
                                                     <td>{!! $notification->id !!}</td>
-                                                    <td>{!! $notification->comments !!}</td>
-                                                    <td>{!! $notification->expiry_date !!}</td>                   
+                                                    <td style="width:80%">{!! $notification->comments !!}</td>
+                                                    <td >{!! $notification->expiry_date !!}</td>                   
 
                                                 </tr>
                                                 @endforeach
@@ -387,7 +385,7 @@ ul,li { margin:0; padding:0; list-style:none;}
     });
 
     function saveData(url) {
-        alert($("form").serialize());
+       // alert($("form").serialize());
         
         $('.required_field').empty();
        // console.log(formData);
@@ -453,7 +451,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                      if(dropdown_name=='multiselect_assignee'){
                     $('#multiselect_assignee').multiselect({
                             columns: 2,
-                            placeholder: 'Select Languages',
+                            placeholder: 'Select Employee',
                             search: true,
                             selectAll: true
                         });

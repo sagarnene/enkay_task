@@ -26,7 +26,7 @@ class TaskModel {
 
     public function show_assignee_task($id, $column) {
 
-        return DB::select('select  e1.name as manager, e2.name as assignee, t.status,t.description,t.id,s.name as status_name,p.name as priority_name, t.priority, t.due_date
+        return DB::select('select  e1.name as manager, e2.name as assignee, t.status,t.summary,t.description,t.id,s.name as status_name,p.name as priority_name, t.priority, t.due_date
             from employee e1, task t, employee e2, status s, priority p 
             where s.id = t.status
             and p.id = t.priority

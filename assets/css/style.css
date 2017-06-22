@@ -47,7 +47,7 @@
 	margin-left: 15px;
 }
 #main .comment-box-table {
-	width: 98%;
+	width: 100%;
 	margin: 0 auto;
 }
 #main #comment_field .alert-info {
@@ -63,11 +63,16 @@
     color: #333;
 }
 #main #comment_field .alert-info p:last-child, #main #comment_field .alert-info2 p:last-child {
-    font-weight: bold;
+   
 }
 
 #main .detail-heading-list .list-value {
     color: #999;
     display: inline-block;
     margin-left:  5px;
+}
+
+@media (max-width: 767px) {
+.mrt20{margin-top:20px;}    
+    
 }
