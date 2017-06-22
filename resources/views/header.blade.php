@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
 
-		<title> ENKAY - Homes LTD </title>
+		<title> Task Management </title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 			
@@ -39,7 +39,7 @@
 
 	</head>
         <style>
-            #datatable_fixed_column_filter,#dt_basic_filter,.pText{display:none;}
+            #datatable_fixed_column_filter,#dt_basic_filter{display:none;}
         </style>
 <body class="">
 <form>
@@ -48,7 +48,7 @@
     <div id="logo-group"> 
       
       <!-- PLACE YOUR LOGO HERE --> 
-      <span id="logo"> <a href="{{ URL('/') }}"><img src="assets/img/logo.png" alt="SmartAdmin"> </span> 
+      <span id="logo"> <a href="{{ URL('/') }}"><img src="assets/img/logo.png" alt="SmartAdmin"> {!! Auth::user()->username !!} </span> 
       <!-- END LOGO PLACEHOLDER --> 
       
     </div>

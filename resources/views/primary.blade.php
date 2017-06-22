@@ -106,7 +106,7 @@
                                                 @foreach($task_list as $task)
                                                 <?php $i++; ?>
                                                 <tr role="row" class="odd">
-                                                    <td>{!! $task->id !!}</td>
+                                                    <td><a href='task-details?id={!! $task->id !!}'>{!! $task->id !!}</a></td>
                                                     <td><a href='task-details?id={!! $task->id !!}'>{!! $task->summary !!}</a></td>
                                                     <td>{!! $task->manager !!}</td>
 

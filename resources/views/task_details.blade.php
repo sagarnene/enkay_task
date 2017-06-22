@@ -5,6 +5,14 @@
 .clear{ clear:both;}
 .comment_sec{ border: 1px solid #c2c2c2; padding: 10px;  height: 322px;     overflow-y: scroll;}
 #main .comment-box-table{ height: 322px;}
+.list-value{color: #fff;}
+.red{background:#E1686D; border-radius: 10px; padding:2px 8px; }
+.pink{background:#4CB0A8; border-radius: 10px; padding:2px 8px; }
+.blue{background:#99C947; border-radius: 10px; padding:2px 8px; }
+
+.red1{background:#E1686D; border-radius: 10px; padding:2px 8px; }
+.pink1{background:#4CB0A8; border-radius: 10px; padding:2px 8px; }
+.blue1{background:#99C947; border-radius: 10px; padding:2px 8px; }
 </style>
 <!-- MAIN PANEL -->
 <div id="main" role="main"> 
@@ -56,8 +64,37 @@
 
                                 <div class="col-md-12">
                                     <input type="hidden" id="task_id" value="{!! $task->id !!}">
-                                    <div class="col-md-4"><span><strong>Status:</strong></span> <span class="list-value">{!! $task->status_name !!}</span></div>
-                                    <div class="col-md-4"><span><strong>Priority:</strong></span> <span class="list-value">{!! $task->priority_name !!}</span></div>
+                                    <?php
+                                   
+                                    switch ($task->status_name) {
+                                        case "Open":
+                                             $status_class="red";
+                                            break;
+                                        case "Resolved":
+                                            $status_class="pink";
+                                            break;
+                                        case "Overdue":
+                                            $status_class="blue";
+                                            break;
+                                       
+                                    }
+                                    
+                                    switch ($task->priority_name) {
+                                        case "Low":
+                                             $priority_class="red1";
+                                            break;
+                                        case "Medium":
+                                            $priority_class="pink1";
+                                            break;
+                                        case "High":
+                                            $priority_class="blue1";
+                                            break;
+                                       
+                                    }
+                                    
+                                    ?>
+                                    <div class="col-md-4"><span><strong>Status:</strong></span> <span class="list-value {!! $status_class !!}">{!! $task->status_name !!}</span></div>
+                                    <div class="col-md-4"><span><strong>Priority:</strong></span> <span class="list-value {!! $priority_class !!}">{!! $task->priority_name !!}</span></div>
                                     <div class="col-md-4"><span><strong>Assignee:</strong></span> <span class="list-value">{!! $task->assignee !!}</span></div>
                                     
                                 </div>
@@ -344,6 +381,11 @@
                     $('#comment_field').html('');
                     var color_code;
                     var color_choice=1;
+                    if( !$.isArray(data.report) ||  !data.report.length ) {
+                         $('#comment_field').append('No Comments');
+                    }
+                    else{
+                        $('#comment_field').html('');
                     $.each(data.report, function (index, value) {
                         color_choice++;
                         if(color_choice%2==0){
@@ -353,9 +395,10 @@
                         }
                         $('#comment_field').append('<div class="alert '+color_code+' ">' +
                                 '<p>' + data.report[index].comment + '</p>' +
-                                '<div><p class="pull-right"> Commented by ' + data.report[index].employee_name + '<span class=""> at: ' + data.report[index].added_on + '</span>' + '</p></div>' +
+                                '<div><p class="pull-right"> Commented by ' + data.report[index].employee_name + '<span class=""> on: ' + data.report[index].added_on + '</span>' + '</p></div>' +
                                 '<div class="clear"></div></div>');
                     });
+                }
                 }
             },
             error: function (html) {

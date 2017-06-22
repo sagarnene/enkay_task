@@ -37,7 +37,7 @@ class UserController extends Controller {
                 return redirect()->intended('/');
             } else {
 
-                return redirect()->intended('login')->with("alert_msg", "Username or password in invalid! ");;
+                return redirect()->intended('login')->with("alert_msg", "Username or Password is invalid! ");;
             }
         }
     }

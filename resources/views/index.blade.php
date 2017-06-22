@@ -4,6 +4,7 @@
 ul,li { margin:0; padding:0; list-style:none;}
 .ms-options ul{padding: 0 10px;}
 .btn_task{float:right; margin:10px 10px 0px;}
+.fields{ margin-bottom: 10px; color:red;}
 </style>
 <!-- MAIN PANEL -->
 <div id="main" role="main"> 
@@ -33,10 +34,26 @@ ul,li { margin:0; padding:0; list-style:none;}
     <!-- END RIBBON --> 
     <style>
         .required_field{color:red;}
+        .alert-box {
+	padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;  
+}
+
+.success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    text-align: center;
+    display: none;
+}
+
     </style>
     <!-- MAIN CONTENT -->
     <div id="content">
         <div class="row">
+            <div class="alert-box success success_task">Task Added successfully</div>
             <!-- col starts here -->
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="row">
@@ -114,7 +131,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                 @foreach($task_list as $task)
                                                 <?php $i++; ?>
                                                 <tr role="row" class="odd">
-                                                    <td>{!! $task->id !!}</td>
+                                                    <td><a href='task-details?id={!! $task->id !!}'>{!! $task->id !!}</a></td>
                                                      <td><span class="responsiveExpander"></span><a href='task-details?id={!! $task->id !!}'>{!! $task->summary !!}</a></td>
                                                   
                                                     <td><span class="responsiveExpander"></span>{!! $task->assignee !!}</td>
@@ -146,6 +163,7 @@ ul,li { margin:0; padding:0; list-style:none;}
         </div> 
         <!-- col starts here -->
         <div class="row">
+             <div class="alert-box success success_notification">Notification Added successfully</div>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -164,7 +182,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                                 <span class="widget-icon"> <i class="fa fa-table"></i> </span>
                                 <h2>Notifications</h2>
                                 <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
-                                <button class="btn btn-info btn_task" data-toggle="modal" data-target="#notification_modal"><span class="widget-icon"> <i class="fa fa-plus"></i> Create Notification</button>
+                                <button class="btn btn-info btn_task" data-toggle="modal" data-target="#notification_modal"><span class="widget-icon"> <i class="fa fa-plus"></i> New Notification</button>
                                 </header>
 
                             <!-- widget div-->
@@ -188,12 +206,21 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                     </th>
                                                     <th class="hasinput">
                                                         <div class="input-group" >
+                                                            <input class="form-control" placeholder="Send to" type="text">
+
+                                                        </div>
+
+
+                                                    </th>
+                                                    <th class="hasinput">
+                                                        <div class="input-group" >
                                                             <input class="form-control" placeholder="Comments" type="text">
 
                                                         </div>
 
 
                                                     </th>
+                                                    
                                                     <th class="hasinput icon-addon" style="width:13%">
                                                         <input id="exp_dateselect_filter" type="text" placeholder="Expiry Date" class="form-control datepicker" data-dateformat="yy-mm-dd">
                                                         <label for="dateselect_filter" class="glyphicon glyphicon-calendar no-margin padding-top-15" rel="tooltip" title="" data-original-title="Expiry Date"></label>
@@ -204,6 +231,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                 </tr>
                                                 <tr role="row">
                                                     <th>ID</th>
+                                                    <th>Send To</th>
                                                     <th>Comments</th>
                                                     <th>Expiry Date</th>
 
@@ -215,8 +243,10 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                 @foreach($notification_list as $notification)
                                                 <?php $i++; ?>
                                                 <tr role="row" class="odd">
-                                                    <td>{!! $notification->id !!}</td>
-                                                    <td style="width:80%">{!! $notification->comments !!}</td>
+                                                    <td>{!! $notification->id !!}</td> 
+                                                    
+                                                    <td>{!! $send_to[$notification->id] !!}</td>
+                                                    <td style="width:60%">{!! $notification->comments !!}</td>
                                                     <td >{!! $notification->expiry_date !!}</td>                   
 
                                                 </tr>
@@ -255,6 +285,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                         <div class="modal-body">
 
                             <div class="row">
+                                <div class="col-md-12 fields">*All fields are manditory.</div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Summary" name="summary" id="summary" required />
@@ -336,7 +367,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                
 
                                         </select>
-                                    
+                                    <div id="employee_error"></div>
                                          </div>
                                     <div class="form-group">
                                         <span class="input-icon-outer">
@@ -346,8 +377,8 @@ ul,li { margin:0; padding:0; list-style:none;}
                                         <div id="expiry_date_error"></div>
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="form-control" placeholder="Comments" name="comments" id="comments" rows="5" required></textarea>
-                                        <div id="comments_error"></div>
+                                        <textarea class="form-control" placeholder="Comment" name="comments" id="comments" rows="5" required></textarea>
+                                        <div id="comment_error"></div>
                                     </div>
 
                                 </div>
@@ -396,10 +427,12 @@ ul,li { margin:0; padding:0; list-style:none;}
             dataType: 'json',
             data: $("form").serialize(),
             beforeSend: function (html) {
-
+                ajaxindicatorstart('loading data.. please wait..');
             },
             success: function (data) {
-
+                 
+    ajaxindicatorstop();
+   
                 if (data.fail) {
                     $.each(data.errors, function (index, value) {
 
@@ -411,12 +444,23 @@ ul,li { margin:0; padding:0; list-style:none;}
                     });
                     $('#successMessage').empty();
                 } else {
-                    location.reload();
+                    $('#task_modal').modal('hide');
+                    $('#notification_modal').modal('hide');
+                    if(url=="add-notification"){
+                        
+                        $( "div.success_notification" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 2900 );
+                        setTimeout(function(){  location.reload(); }, 3000);
+                    }else{
+                       
+                        $( "div.success_task" ).fadeIn( 300 ).delay( 1500 ).fadeOut( 2900 );
+                        setTimeout(function(){  location.reload(); }, 3000);
+                    }
+                   
                 }
 
             },
             error: function (html) {
-
+              ajaxindicatorstop();
                 console.log(html);
 
             }
@@ -451,7 +495,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                      if(dropdown_name=='multiselect_assignee'){
                     $('#multiselect_assignee').multiselect({
                             columns: 2,
-                            placeholder: 'Select Employee',
+                            placeholder: 'Select Employees',
                             search: true,
                             selectAll: true
                         });

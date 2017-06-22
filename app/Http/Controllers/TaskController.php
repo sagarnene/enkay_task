@@ -24,7 +24,36 @@ class TaskController extends Controller {
 
             $task_list = $task_list_data->show_task_data();
             $notification_list = $task_list_data->show_notification_data();
-            return view('index', ['task_list' => $task_list, 'notification_list' => $notification_list]);
+$send_to=array();
+            foreach ($notification_list as $notification) {
+
+                //echo $notification->id;
+                $employee_data = DB::select('select e.name
+                    from notification n, ntf_assignee na, employee e
+                    where n.id=na.ntf_id
+                    and na.assignee=e.id
+                    and n.id='.$notification->id);
+                $send_to_number=1;
+                $multiple_name;
+                foreach ($employee_data as $send) {
+                    if($send_to_number==1){
+                         $multiple_name=$send->name;
+                    }else{
+                         $multiple_name=$multiple_name.", ".$send->name;
+                    }
+                    $send_to_number++;
+                    
+                }
+                 $send_to[$notification->id]= $multiple_name;
+                
+            }
+          // print_r($send_to);
+              //  exit;
+
+
+
+
+            return view('index', ['task_list' => $task_list, 'notification_list' => $notification_list,'send_to'=>$send_to]);
         } else {
 
             $task_list = $task_list_data->show_assignee_task(Auth::user()->id, 'assignee');
@@ -98,7 +127,7 @@ class TaskController extends Controller {
 
                 $managere_name = $manager_data->name;
 
-                Mail::send('emails.task_assign', ['name' => $assignee_data->email, 'manager_name' => $manager_data->name, 'summary' => $summary], function ($message) use ($assignee_data) {
+                Mail::send('emails.task_assign', ['name' => $assignee_data->name, 'manager_name' => $manager_data->name, 'summary' => $summary], function ($message) use ($assignee_data) {
 
                     $message->to($assignee_data->email);
                     $message->subject('Task Notification');
@@ -126,7 +155,7 @@ class TaskController extends Controller {
 
     public function add_notification() {
 
-
+        $selected_employee = Input::get('multiselect_assignee');
         $expiry_date = Input::get('expiry_date');
         $comments = Input::get('comments');
         $notification_id = Input::get('id');
@@ -134,11 +163,13 @@ class TaskController extends Controller {
         $table = 'notification';
         $validator = Validator::make(
                         array(
+                    'employee' => $selected_employee,
                     'expiry_date' => $expiry_date,
-                    'comments' => $comments
+                    'comment' => $comments
                         ), array(
+                    'employee' => 'required',
                     "expiry_date" => 'required | date_format:Y-m-d',
-                    "comments" => 'required | between:5,400'
+                    "comment" => 'required | between:5,400'
                         )
         );
         if ($validator->fails()) {
@@ -174,12 +205,18 @@ class TaskController extends Controller {
 
                     $add_notification = new TaskModel;
                     $add_notification->save_data('ntf_assignee', $notification_data);
-                    
-                    /*Mail::send('emails.notofication', ['name' => $assignee_data->email, 'manager_name' => $manager_data->name, 'summary' => $summary], function ($message) use ($assignee_data) {
 
-                        $message->to($assignee_data->email);
+                    $employee_data = DB::table('employee')->where('id', $emp)->first();
+
+                    $manager_data = $add_notification->show_one_data('employee', 'id', $manager);
+
+                    $managere_name = $manager_data->name;
+
+                    Mail::send('emails.notification', ['name' => $employee_data->name, 'email' => $employee_data->email, 'manager_name' => $managere_name, 'comments' => $comments], function ($message) use ($employee_data) {
+
+                        $message->to($employee_data->email);
                         $message->subject('Notification');
-                    });*/
+                    });
                 }
 
 
@@ -257,7 +294,7 @@ class TaskController extends Controller {
 
         Mail::send('emails.send', ['task_list' => $task_list], function ($message) use ($task_list) {
 
-            $message->to('rahul.s@ideatore.in');
+            $message->to('sagar.n@ideatore.in');
             $message->subject('Task Report');
         });
 
@@ -273,12 +310,13 @@ class TaskController extends Controller {
                     'report' => $drop_down_data
         ));
     }
+
     public function update_description() {
-       
+
         $task_id = Input::get('task_id');
         $description = Input::get('description');
 
-        
+
         $table = 'task';
         $validator = Validator::make(
                         array(
@@ -298,17 +336,16 @@ class TaskController extends Controller {
             $data = array(
                 'id' => $task_id,
                 'description' => $description
-                
             );
-            
-                $update_description = new TaskModel;
-                $update_description->update_data($table, $data,'id',$task_id);
 
-                return Response::json(array(
-                            'success' => true,
-                            'msg' => "Description has updated Successfully!"
-                ));
-            
+            $update_description = new TaskModel;
+            $update_description->update_data($table, $data, 'id', $task_id);
+
+            return Response::json(array(
+                        'success' => true,
+                        'msg' => "Description has updated Successfully!"
+            ));
         }
     }
+
 }

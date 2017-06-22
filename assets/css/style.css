@@ -71,7 +71,7 @@
     display: inline-block;
     margin-left:  5px;
 }
-
+.MessageBoxContainer {width: 400px;  height: 234px;  margin: 0 auto;  text-align: center;   color: #000;  background: #fff;}
 @media (max-width: 767px) {
 .mrt20{margin-top:20px;}    
     
