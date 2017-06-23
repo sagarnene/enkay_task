@@ -9929,7 +9929,7 @@ aside {
 	margin-left: 9px
 }
 #logo img {
-	width: 110px;
+	width: 156px;
 	height: auto;
 	padding-left: 3px
 }
@@ -10047,9 +10047,9 @@ aside {
 	font-size: 17px;
 	text-decoration: none!important
 }
-#header>:first-child, aside {
+/*#header>:first-child, aside {
 	width: 220px
-}
+}*/
 #left-panel {
 	position: absolute;
 	top: 0;
@@ -10058,7 +10058,7 @@ aside {
 	padding-top: 49px
 }
 #main {
-	margin-left: 220px;
+	/*margin-left: 220px;*/
 	padding: 0;
 	padding-bottom: 52px;
 	min-height: 500px;
@@ -14599,9 +14599,9 @@ body.fixed-navigation.hidden-menu {
 #logo {
 	width: 135px
 }
-#logo-group {
+/*#logo-group {
 	width: 169px!important
-}
+}*/
 #sparks {
 	text-align: center;
 	background: #E0E0E0;
@@ -15068,4 +15068,5 @@ body.menu-on-top.fixed-header.fixed-navigation.fixed-ribbon #ribbon {
 }
 .btn-info{    color: #fff; background-color: #0092DD !important;   border-color: #0092DD !important;}
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover{background-color: #0092DD !important;  border-color: #0092DD !important;}
-#logout .fa{font-size:28px; margin-top:10px;}
+#logout .fa{font-size:28px; margin-top:25px;}
+#main .login-outer{margin:0 auto; float:none;}

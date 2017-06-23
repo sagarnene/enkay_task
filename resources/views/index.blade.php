@@ -222,7 +222,7 @@ ul,li { margin:0; padding:0; list-style:none;}
 
                                                     </th>
                                                     
-                                                    <th class="hasinput icon-addon" style="width:13%">
+                                                    <th class="hasinput icon-addon">
                                                         <input id="exp_dateselect_filter" type="text" placeholder="Expiry Date" class="form-control datepicker" data-dateformat="yy-mm-dd">
                                                         <label for="dateselect_filter" class="glyphicon glyphicon-calendar no-margin padding-top-15" rel="tooltip" title="" data-original-title="Expiry Date"></label>
                                                     </th>
@@ -286,7 +286,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                         <div class="modal-body">
 
                             <div class="row">
-                                <div class="col-md-12 fields">*All fields are manditory.</div>
+                                <div class="col-md-12 fields">*All fields are mandatory.</div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <input type="text" class="form-control" placeholder="Summary" name="summary" id="summary" required />

@@ -6,6 +6,8 @@
 .comment_sec{ border: 1px solid #c2c2c2; padding: 10px;  height: 322px;     overflow-y: scroll;}
 #main .comment-box-table{ height: 322px;}
 .list-value{color: #fff;}
+.well .assignee{color: #000;}
+.mob_lt{line-height:25px;}
 .red{background:#E1686D; border-radius: 10px; padding:2px 8px; }
 .pink{background:#4CB0A8; border-radius: 10px; padding:2px 8px; }
 .blue{background:#99C947; border-radius: 10px; padding:2px 8px; }
@@ -93,9 +95,9 @@
                                     }
                                     
                                     ?>
-                                    <div class="col-md-4"><span><strong>Status:</strong></span> <span class="list-value {!! $status_class !!}">{!! $task->status_name !!}</span></div>
-                                    <div class="col-md-4"><span><strong>Priority:</strong></span> <span class="list-value {!! $priority_class !!}">{!! $task->priority_name !!}</span></div>
-                                    <div class="col-md-4"><span><strong>Assignee:</strong></span> <span class="list-value">{!! $task->assignee !!}</span></div>
+                                    <div class="col-md-4 col-xs-4 mob_lt"><span><strong>Status:</strong></span> <span class="list-value {!! $status_class !!}">{!! $task->status_name !!}</span></div>
+                                    <div class="col-md-4 col-xs-4 mob_lt"><span><strong>Priority:</strong></span> <span class="list-value {!! $priority_class !!}">{!! $task->priority_name !!}</span></div>
+                                    <div class="col-md-4 col-xs-4 mob_lt"><span><strong>Assignee:</strong></span> <span class="list-value assignee">{!! $task->assignee !!}</span></div>
                                     
                                 </div>
 

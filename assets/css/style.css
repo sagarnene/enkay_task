@@ -55,12 +55,14 @@
     border-color: #0092DD;
     margin-bottom:  5px;
     color: #333;
+    word-wrap: break-word;
 }
 #main #comment_field .alert-info2 {
     background: #e0f7fa;
     border-color: #0092DD;
     margin-bottom:  5px;
     color: #333;
+    word-wrap: break-word;
 }
 #main #comment_field .alert-info p:last-child, #main #comment_field .alert-info2 p:last-child {
    
@@ -76,3 +78,4 @@
 .mrt20{margin-top:20px;}    
     
 }
+.wel_user{margin:5px 10px 0 0; font-size:16px !important;}

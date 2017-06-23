@@ -30,7 +30,23 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="assets/css/demo.min.css">
 
 		<!-- FAVICONS -->
-		<link rel="shortcut icon" href="http://www.enkayhomes.com/favicon_enkay.ico" type="image/x-icon">
+		<link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicon/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="assets/img/favicon/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="assets/img/favicon/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="assets/img/favicon/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="assets/img/favicon/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="assets/img/favicon/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="assets/img/favicon/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="assets/img/favicon/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="assets/img/favicon/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon/favicon-16x16.png">
+		<link rel="manifest" href="/manifest.json">
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="msapplication-TileImage" content="assets/img/favicon/ms-icon-144x144.png">
+		<meta name="theme-color" content="#ffffff">
 
 		<!-- GOOGLE FONT -->
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
@@ -48,19 +64,19 @@
     <div id="logo-group"> 
       
       <!-- PLACE YOUR LOGO HERE --> 
-      <span id="logo"> <a href="{{ URL('/') }}"><img src="assets/img/logo.png" alt="SmartAdmin"> {!! Auth::user()->username !!} </span> 
+      <span id="logo"> <a href="{{ URL('/') }}"><img src="assets/img/logo.png" alt="SmartAdmin">  </span> 
       <!-- END LOGO PLACEHOLDER --> 
       
     </div>
     
     <!-- pulled right: nav area -->
     <div class="pull-right"> 
-      
+
       <!-- #MOBILE --> 
       <!-- Top menu profile link : this shows only when top menu is active --> 
       
       <!-- logout button -->
-      <div id="logout" class="btn-header transparent pull-right"> <span> <a href="logout" title="Sign Out" data-action="userLogout"><i class="fa fa-sign-out"></i></a> </span> </div>
+      <div id="logout" class="btn-header transparent pull-right">      <span class="wel_user">Welcome {!! Auth::user()->username !!}</span><span> <a href="logout" title="Sign Out" data-action="userLogout"><!--i class="fa fa-sign-out"></i--><img src="assets/img/logout.png" width="32" height="32"></a> </span> </div>
       
       
     </div>
