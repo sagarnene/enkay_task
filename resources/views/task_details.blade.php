@@ -97,7 +97,24 @@
                                     ?>
                                     <div class="col-md-4 col-xs-4 mob_lt"><span><strong>Status:</strong></span> <span class="list-value {!! $status_class !!}">{!! $task->status_name !!}</span></div>
                                     <div class="col-md-4 col-xs-4 mob_lt"><span><strong>Priority:</strong></span> <span class="list-value {!! $priority_class !!}">{!! $task->priority_name !!}</span></div>
-                                    <div class="col-md-4 col-xs-4 mob_lt"><span><strong>Assignee:</strong></span> <span class="list-value assignee">{!! $task->assignee !!}</span></div>
+                                    <div class="col-md-4 col-xs-4 mob_lt"><span><strong>Assignee:</strong></span> <span class="list-value assignee">{!! $task->primary_name !!}</span></div>
+                                    
+                                </div>
+
+
+
+                            </div>
+                            <!-- end row -->
+
+                            <!-- row -->
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <input type="hidden" id="task_id" value="{!! $task->id !!}">
+                                    
+                                    <div class="col-md-4 col-xs-4 mob_lt"><span><strong>Reporting:</strong></span> <span class="list-value assignee">{!! $task->report_frequency !!}</span></div>
+                                    <div class="col-md-4 col-xs-4 mob_lt"><span><strong>Completed:</strong></span> <span class="list-value assignee">{!! $task->percentage !!}</span><strong> %</strong></div>
+                                    <div class="col-md-4 col-xs-4 mob_lt"><span><strong>Vendor:</strong></span> <span class="list-value assignee">{!! $task->vendor_name !!}</span></div>
                                     
                                 </div>
 

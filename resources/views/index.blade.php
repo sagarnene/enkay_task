@@ -134,7 +134,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                     <td><a href='task-details?id={!! $task->id !!}'>{!! $task->id !!}</a></td>
                                                      <td><span class="responsiveExpander"></span><a href='task-details?id={!! $task->id !!}'>{!! $task->summary !!}</a></td>
                                                   
-                                                    <td><span class="responsiveExpander"></span>{!! $task->assignee !!}</td>
+                                                    <td><span class="responsiveExpander"></span>{!! $task->primary_name !!}</td>
                                                     <td>{!! $task->status_name !!}</td>
                                                     <td>{!! $task->priority_name !!}</td>
                                                     <td>{!! $task->due_date !!}</td>
@@ -215,8 +215,9 @@ ul,li { margin:0; padding:0; list-style:none;}
                                                     
                                                     <th class="hasinput">
                                                         
-                                                            <input class="form-control" placeholder="Comments" type="text">
+															<input class="form-control" placeholder="Comments" type="text">
 
+															
                                                        
 
 
@@ -297,7 +298,7 @@ ul,li { margin:0; padding:0; list-style:none;}
                                         <div id="description_error"></div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="category">Assignee</label>
+                                        <label for="category">Primary Assignee</label>
                                         <select name="assignee" class="form-control" id="assignee">
 
                                         </select>

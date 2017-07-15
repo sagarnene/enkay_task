@@ -56,7 +56,7 @@ $send_to=array();
             return view('index', ['task_list' => $task_list, 'notification_list' => $notification_list,'send_to'=>$send_to]);
         } else {
 
-            $task_list = $task_list_data->show_assignee_task(Auth::user()->id, 'assignee');
+            $task_list = $task_list_data->show_assignee_task(Auth::user()->id, 'primary');
             $notification_list = $task_list_data->show_assignee_notification(Auth::user()->id, 'assignee');
             return view('primary', ['task_list' => $task_list, 'notification_list' => $notification_list]);
         }
